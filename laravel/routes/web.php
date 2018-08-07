@@ -16,6 +16,12 @@ Route::get('/', function () {
 });
 
 Route::group(['middleware' => ['web']],function (){
+    Route::any('login', ['uses' => 'LoginController@index']);
+    Route::any('logout', ['uses' => 'LoginController@logout']);
+
+});
+
+Route::group(['middleware' => ['web','adminauth']], function (){
     Route::get('index', ['uses' => 'HomeController@index']);
     Route::get('show', ['uses' => 'HomeController@show']);
     Route::get('admin/index', ['uses' => 'AdminController@index']);
