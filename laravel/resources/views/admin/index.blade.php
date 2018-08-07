@@ -66,7 +66,7 @@
                             <td>{{ $admin->user_name }}</td>
                             <td>{{ $admin->nickname }}</td>
                             <td>{{ $admin->mobile }}</td>
-                            <td>{{ $admin->sex($admin->sex) }}</td>
+                            <td>{{ $admin->sex_config($admin->sex) }}</td>
                             <td>{{ $admin->gid }}</td>
                             <td>{{ date('Y-m-d H:i:s', $admin->created_at) }}</td>
                             <td>

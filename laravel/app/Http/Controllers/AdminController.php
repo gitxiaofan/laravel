@@ -18,6 +18,7 @@ class AdminController extends Controller
 
     public function create(Request $request)
     {
+        $admin = new Admin();
         if ($request->isMethod('POST')){
 
             $validate = \Validator::make($request->input(),[
@@ -49,7 +50,6 @@ class AdminController extends Controller
                 return redirect()->back();
             }
         }
-        $admin = new Admin();
         return view('admin.create',[
             'admin' => $admin
         ]);

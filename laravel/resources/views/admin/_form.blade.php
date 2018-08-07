@@ -53,9 +53,9 @@
     <div class="form-group">
         <label class="col-sm-3 control-label">性别：</label>
         <div class="col-sm-8">
-            @foreach($admin->sex() as $k => $val)
+            @foreach($admin->sex_config() as $k => $val)
                 <div class="radio i-checks checkbox-inline">
-                    <label><input type="radio" value="{{ $k }}" {{ $admin->sex == $k ? 'checked' : '' }} name="sex"> <i></i> {{ $val }}</label>
+                    <label><input type="radio" value="{{ $k }}" {{ isset($admin->sex) && $admin->sex == $k ? 'checked' : '' }} name="sex"> <i></i> {{ $val }}</label>
                 </div>
             @endforeach
         </div>

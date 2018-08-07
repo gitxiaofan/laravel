@@ -33,11 +33,11 @@
             <ul class="nav" id="side-menu">
                 <li class="nav-header">
                     <div class="dropdown profile-element">
-                        <span><img width="70" alt="image" class="img-circle" src="" /></span>
+                        <span><img width="70" alt="image" class="img-circle" src="{{ asset('/assets/admin/img/a3.jpg') }}" /></span>
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                                 <span class="clear">
                                <span class="block m-t-xs"><strong class="font-bold"></strong></span>
-                                <span class="text-muted text-xs block">管理员<b class="caret"></b></span>
+                                <span class="text-muted text-xs block">{{ session()->get('admin')['user_name'] }}<b class="caret"></b></span>
                                 </span>
                         </a>
                         <ul class="dropdown-menu animated fadeInRight m-t-xs">
@@ -46,7 +46,7 @@
                             <li><a class="J_menuItem" href="">个人资料</a>
                             </li>
                             <li class="divider"></li>
-                            <li><a href="">安全退出</a>
+                            <li><a href="{{ url('logout') }}">安全退出</a>
                             </li>
                         </ul>
                     </div>
@@ -54,7 +54,7 @@
                     </div>
                 </li>
                 <li>
-                    <a class="J_menuItem" href=""><i class="fa fa-home"></i><span class="nav-label">仪表盘</span></a>
+                    <a class="J_menuItem" href="{{ url('show') }}"><i class="fa fa-home"></i><span class="nav-label">仪表盘</span></a>
                 </li>
                 <li>
                     <a href="#">
@@ -145,10 +145,10 @@
                     </a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a class="J_menuItem" href="">所有管理员</a>
+                            <a class="J_menuItem" href="{{ url('admin/index') }}">所有管理员</a>
                         </li>
                         <li>
-                            <a class="J_menuItem" href="">添加管理员</a>
+                            <a class="J_menuItem" href="{{ url('admin/create') }}">添加管理员</a>
                         </li>
                     </ul>
                 </li>

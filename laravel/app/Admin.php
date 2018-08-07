@@ -33,7 +33,7 @@ class Admin extends Model
         return $value;
     }
 
-    public function sex($ind = NULL)
+    public function sex_config($ind = NULL)
     {
         $arr = [
             1 => '男',
