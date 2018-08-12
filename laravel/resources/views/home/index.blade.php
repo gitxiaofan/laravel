@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="renderer" content="webkit">
 
-    <title>管理后台 - 追思网</title>
+    <title>管理后台</title>
 
     <meta name="keywords" content="">
     <meta name="description" content="">
@@ -50,7 +50,7 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="logo-element">思
+                    <div class="logo-element">P
                     </div>
                 </li>
                 <li>
@@ -59,15 +59,15 @@
                 <li>
                     <a href="#">
                         <i class="fa fa-university"></i>
-                        <span class="nav-label">纪念馆</span>
+                        <span class="nav-label">生产平台</span>
                         <span class="fa arrow"></span>
                     </a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a class="J_menuItem" href="">所有纪念馆</a>
+                            <a class="J_menuItem" href="{{ url('proone/index') }}">所有项目</a>
                         </li>
                         <li>
-                            <a class="J_menuItem" href="">添加纪念馆</a>
+                            <a class="J_menuItem" href="{{ url('proone/create') }}">创建项目</a>
                         </li>
                     </ul>
                 </li>
@@ -209,7 +209,7 @@
             <iframe class="J_iframe" name="iframe0" width="100%" height="100%" src="{{ url('show') }}" frameborder="0" data-id="{{ url('show') }}" seamless></iframe>
         </div>
         <div class="footer">
-            <div class="pull-right">&copy; 2018-2025 <a href="/" target="_blank">追思网</a>
+            <div class="pull-right">&copy; 2018-2025 <a href="/" target="_blank">项目网</a>
             </div>
         </div>
     </div>

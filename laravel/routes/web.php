@@ -29,6 +29,9 @@ Route::group(['middleware' => ['web','adminauth']], function (){
     Route::any('admin/update/{id}', ['uses' => 'AdminController@update']);
     Route::get('admin/check_name', ['uses' => 'AdminController@check_name']);
     Route::get('admin/delete/{id}', ['uses' => 'AdminController@delete']);
+    Route::get('proone/index', ['uses' => 'ProoneController@index']);
+    Route::any('proone/create', ['uses' => 'ProoneController@create']);
+    Route::any('proone/update/{id}', ['uses' => 'ProoneController@update']);
 });
 
 
