@@ -223,7 +223,7 @@
                     @endif
                 </ul>
             </div>
-            <textarea id="event_record" name="event_record" class="form-control">{{ old('event_record') ? old('event_record') : $project->event_record}}</textarea>
+            <textarea id="event_record" name="event_record" class="form-control">{{ old('event_record') ? old('event_record') : ''}}</textarea>
         </div>
     </div>
     <div class="form-group">

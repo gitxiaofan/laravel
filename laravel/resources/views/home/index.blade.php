@@ -58,7 +58,7 @@
                 </li>
                 <li>
                     <a href="#">
-                        <i class="fa fa-university"></i>
+                        <i class="fa fa-calendar"></i>
                         <span class="nav-label">生产平台</span>
                         <span class="fa arrow"></span>
                     </a>
@@ -72,38 +72,92 @@
                     </ul>
                 </li>
                 <li>
-                    <a class="J_menuItem" href=""><i class="fa fa-commenting"></i> <span class="nav-label">追思</span></a>
-                </li>
-                <li>
                     <a href="#">
-                        <i class="fa fa-tachometer"></i>
-                        <span class="nav-label">祭品</span>
+                        <i class="fa fa-calendar"></i>
+                        <span class="nav-label">钻井平台</span>
                         <span class="fa arrow"></span>
                     </a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a class="J_menuItem" href="">所有祭品</a>
+                            <a class="J_menuItem" href="{{ url('proone/index') }}">所有项目</a>
                         </li>
                         <li>
-                            <a class="J_menuItem" href="">添加祭品</a>
+                            <a class="J_menuItem" href="{{ url('proone/create') }}">创建项目</a>
                         </li>
                     </ul>
                 </li>
                 <li>
                     <a href="#">
-                        <i class="fa fa fa-bar-chart-o"></i>
-                        <span class="nav-label">广告</span>
+                        <i class="fa fa-calendar"></i>
+                        <span class="nav-label">生活平台</span>
                         <span class="fa arrow"></span>
                     </a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a class="J_menuItem" href="">所有广告</a>
+                            <a class="J_menuItem" href="{{ url('proone/index') }}">所有项目</a>
                         </li>
                         <li>
-                            <a class="J_menuItem" href="">添加广告</a>
+                            <a class="J_menuItem" href="{{ url('proone/create') }}">创建项目</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-calendar"></i>
+                        <span class="nav-label">重吊铺管船</span>
+                        <span class="fa arrow"></span>
+                    </a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a class="J_menuItem" href="{{ url('proone/index') }}">所有项目</a>
                         </li>
                         <li>
-                            <a class="J_menuItem" href="">广告分类</a>
+                            <a class="J_menuItem" href="{{ url('proone/create') }}">创建项目</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-calendar"></i>
+                        <span class="nav-label">FSRU</span>
+                        <span class="fa arrow"></span>
+                    </a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a class="J_menuItem" href="{{ url('proone/index') }}">所有项目</a>
+                        </li>
+                        <li>
+                            <a class="J_menuItem" href="{{ url('proone/create') }}">创建项目</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-calendar"></i>
+                        <span class="nav-label">LNG模块</span>
+                        <span class="fa arrow"></span>
+                    </a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a class="J_menuItem" href="{{ url('proone/index') }}">所有项目</a>
+                        </li>
+                        <li>
+                            <a class="J_menuItem" href="{{ url('proone/create') }}">创建项目</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-calendar"></i>
+                        <span class="nav-label">水下设施和工程</span>
+                        <span class="fa arrow"></span>
+                    </a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a class="J_menuItem" href="{{ url('proone/index') }}">所有项目</a>
+                        </li>
+                        <li>
+                            <a class="J_menuItem" href="{{ url('proone/create') }}">创建项目</a>
                         </li>
                     </ul>
                 </li>
@@ -119,21 +173,6 @@
                         </li>
                         <li>
                             <a class="J_menuItem" href="">添加页面</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="fa fa-users"></i>
-                        <span class="nav-label">用户</span>
-                        <span class="fa arrow"></span>
-                    </a>
-                    <ul class="nav nav-second-level">
-                        <li>
-                            <a class="J_menuItem" href="">所有用户</a>
-                        </li>
-                        <li>
-                            <a class="J_menuItem" href="">添加用户</a>
                         </li>
                     </ul>
                 </li>

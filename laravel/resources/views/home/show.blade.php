@@ -21,16 +21,6 @@
 
 <body class="gray-bg">
 <div class="row  border-bottom white-bg dashboard-header">
-    <div class="col-sm-12">
-        <blockquote class="text-warning" style="font-size:14px">逝去的，虽已消散，记忆依旧存在…
-            <br>忘却的是伤痛，不忘的是怀念…
-            <br>选择遗忘那伤心的种种，对你的思念永存心头…
-            <br>…………
-            <h4 class="text-danger">愿生者健康，逝者安息，缅怀过去，祈福未来！</h4>
-        </blockquote>
-
-        <hr>
-    </div>
     <div class="col-sm-3">
         <h2>Hello,</h2>
         <p>这是网站管理后台，你可以在这里管理编辑网站的各类信息。</p>
