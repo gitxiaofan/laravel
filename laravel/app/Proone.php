@@ -103,4 +103,10 @@ class Proone extends Model
         }
         return $arr;
     }
+
+    public function ProoneRecord()
+    {
+        return $this->hasMany('App\ProoneRecord','pro_id','id')->orderBy('id','DESC');
+    }
+
 }

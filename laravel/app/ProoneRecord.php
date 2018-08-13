@@ -33,4 +33,9 @@ class ProoneRecord extends Model
         return $value;
     }
 
+    public function Admin()
+    {
+        return $this->hasOne('App\Admin','id','admin_id');
+    }
+
 }

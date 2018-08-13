@@ -82,6 +82,7 @@
                                 </div>
                             </li>
                             <input type="hidden" class="{{ 'shareholder-input-'.$key }}" name="shareholder[time][]" value="{{ $item['time'] }}">
+                            <input type="hidden" class="{{ 'shareholder-input-'.$key }}" name="shareholder[content][]" value="{{ $item['content'] }}">
                         @endforeach
                     @endif
                 </ul>
@@ -112,6 +113,7 @@
                                 </div>
                             </li>
                             <input type="hidden" class="{{ 'operator-input-'.$key }}" name="operator[time][]" value="{{ $item['time'] }}">
+                            <input type="hidden" class="{{ 'operator-input-'.$key }}" name="operator[content][]" value="{{ $item['content'] }}">
                         @endforeach
                     @endif
                 </ul>
@@ -135,7 +137,8 @@
                                     <div class="myclick fcl-del" data-id="{{ 'p_power-input-'.$key }}"><i class="fa fa-times"></i> 删除</div>
                                 </div>
                             </li>
-                            <input type="hidden" class="{{ 'p_power-input-'.$key }}" name="operator[time][]" value="{{ $item['time'] }}">
+                            <input type="hidden" class="{{ 'p_power-input-'.$key }}" name="p_power[time][]" value="{{ $item['time'] }}">
+                            <input type="hidden" class="{{ 'p_power-input-'.$key }}" name="p_power[content][]" value="{{ $item['content'] }}">
                         @endforeach
                     @endif
                 </ul>
@@ -159,7 +162,8 @@
                                     <div class="myclick fcl-del" data-id="{{ 's_power-input-'.$key }}"><i class="fa fa-times"></i> 删除</div>
                                 </div>
                             </li>
-                            <input type="hidden" class="{{ 's_power-input-'.$key }}" name="operator[time][]" value="{{ $item['time'] }}">
+                            <input type="hidden" class="{{ 's_power-input-'.$key }}" name="s_power[time][]" value="{{ $item['time'] }}">
+                            <input type="hidden" class="{{ 's_power-input-'.$key }}" name="s_power[content][]" value="{{ $item['content'] }}">
                         @endforeach
                     @endif
                 </ul>
@@ -194,7 +198,8 @@
                                     <div class="myclick fcl-del" data-id="{{ 'product_time-input-'.$key }}"><i class="fa fa-times"></i> 删除</div>
                                 </div>
                             </li>
-                            <input type="hidden" class="{{ 'product_time-input-'.$key }}" name="operator[time][]" value="{{ $item['time'] }}">
+                            <input type="hidden" class="{{ 'product_time-input-'.$key }}" name="product_time[time][]" value="{{ $item['time'] }}">
+                            <input type="hidden" class="{{ 'product_time-input-'.$key }}" name="product_time[content][]" value="{{ $item['content'] }}">
                         @endforeach
                     @endif
                 </ul>
@@ -207,14 +212,14 @@
     <div class="form-group">
         <label class="col-sm-3 control-label">项目重大事件记录：</label>
         <div class="col-sm-8">
-            <div class="form-control-list">
+            <div class="event_record form-control-list">
                 <ul class="list-unstyled">
-                    @if(isset($project_record) && $project_record)
-                        @foreach($project_record as $key => $item)
+                    @if(count($project->ProoneRecord) != 0)
+                        @foreach($project->ProoneRecord as $key => $item)
                             <li>
                                 <div class="col-xs-3">{{ date( 'Y-m-d H:i:s',$item->created_at) }}</div>
                                 <div class="col-xs-5">{{ $item->content }}</div>
-                                <div class="col-xs-2">{{ $item->admin_id }}</div>
+                                <div class="col-xs-2">{{ $item->Admin->user_name }}</div>
                                 <div class="col-xs-2">
                                     <div class="myclick fcl-del" data-id="{{ $item->id }}"><i class="fa fa-times"></i> 删除</div>
                                 </div>

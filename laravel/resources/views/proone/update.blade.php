@@ -170,6 +170,21 @@
 
 </script>
 
+<script>
+ $(function () {
+     $('.event_record .fcl-del').click(function () {
+         var id = $(this).data('id');
+         $.ajax({
+             type: 'get',
+             url: '{{ url('proone/deleterecord') }}' + '/' + id,
+             dataType: 'json',
+             success: function (data) {
+                 console.log(data);
+             }
+         });
+     });
+ })
+</script>
 
 </body>
 

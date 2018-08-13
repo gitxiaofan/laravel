@@ -46,6 +46,32 @@
                             </form>
                         </div>
                     </div>
+                    <div class="row">
+                        <form class="form-horizontal">
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">项目名称：</label>
+                                    <div class="col-sm-8">
+                                        <input id="name" name="name" value="" class="form-control" type="text">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">开发方式：</label>
+                                    <div class="col-sm-8">
+                                        <select class="form-control m-b" name="model">
+                                            @if(count($projects) != 0)
+                                                @foreach($projects[0]->model_config() as $k => $val)
+                                                    <option value="{{ $k }}">{{ $val }}</option>
+                                                @endforeach
+                                            @endif
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                     <table class="table table-hover table-bordered table-striped">
                         <thead>
                         <tr>
@@ -69,7 +95,8 @@
                                 <td>{{ $project->region_config($project->region) }}</td>
                                 <td>{{ $project->status_config($project->status) }}</td>
                                 <td>{{ $project->bs_config($project->bidding_status) }}</td>
-                                <td>{{ date('Y-m-d H:i:s', $project->created_at) }}</td>
+                                <td>{{ count($project->ProoneRecord) != 0 ? $project->ProoneRecord[0]->content : '' }}</td>
+                                <td>{{ count($project->ProoneRecord) != 0 ? $project->ProoneRecord[0]->Admin->user_name : '' }}</td>
                                 <td>
                                     <div class="btn-group">
                                         <a href="{{ url('proone/update',['id'=>$project->id]) }}" class="btn btn-info btn-sm">修改</a>

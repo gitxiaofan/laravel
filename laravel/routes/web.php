@@ -32,6 +32,8 @@ Route::group(['middleware' => ['web','adminauth']], function (){
     Route::get('proone/index', ['uses' => 'ProoneController@index']);
     Route::any('proone/create', ['uses' => 'ProoneController@create']);
     Route::any('proone/update/{id}', ['uses' => 'ProoneController@update']);
+    Route::any('proone/delete/{id}', ['uses' => 'ProoneController@delete']);
+    Route::get('proone/deleterecord/{id}', ['uses' => 'ProoneController@deleteRecord']);
 });
 
 
