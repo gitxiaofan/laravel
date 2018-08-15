@@ -7920,3 +7920,5 @@ body.skin-3 {
 .clockpicker-popover {z-index: 9999 !important;}
 
 .top-logo p { padding: 0; margin: 0;}
+
+#main-table tbody tr { cursor: pointer;}

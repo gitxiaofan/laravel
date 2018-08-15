@@ -106,7 +106,7 @@
                             </form>
                         </div>
                     </div>
-                    <table class="table table-hover table-bordered table-striped">
+                    <table class="table table-hover table-bordered table-striped" id="main-table">
                         <thead>
                         <tr>
                             <th>ID</th>
@@ -122,15 +122,15 @@
                         </thead>
                         <tbody>
                         @foreach($projects as $project)
-                            <tr>
-                                <td>{{ $project->id }}</td>
-                                <td>{{ $project->name }}</td>
-                                <td>{{ $project->model_config($project->model) }}</td>
-                                <td>{{ $project->region_config($project->region) }}</td>
-                                <td>{{ $project->status_config($project->status) }}</td>
-                                <td>{{ $project->bs_config($project->bidding_status) }}</td>
-                                <td>{{ count($project->ProoneRecord) != 0 ? $project->ProoneRecord[0]->content : '' }}</td>
-                                <td>{{ count($project->ProoneRecord) != 0 ? $project->ProoneRecord[0]->Admin->user_name : '' }}</td>
+                                <tr data-id="{{ $project->id }}" data-src="{{ url('proone/update',['id'=>$project->id]) }}">
+                                    <td>{{ $project->id }}</td>
+                                    <td>{{ $project->name }}</td>
+                                    <td>{{ $project->model_config($project->model) }}</td>
+                                    <td>{{ $project->region_config($project->region) }}</td>
+                                    <td>{{ $project->status_config($project->status) }}</td>
+                                    <td>{{ $project->bs_config($project->bidding_status) }}</td>
+                                    <td>{{ count($project->ProoneRecord) != 0 ? $project->ProoneRecord[0]->content : '' }}</td>
+                                    <td>{{ count($project->ProoneRecord) != 0 ? $project->ProoneRecord[0]->Admin->user_name : '' }}</td>
                                 <!--
                                 <td>
                                     <div class="btn-group">
@@ -139,7 +139,7 @@
                                     </div>
                                 </td>
                                 -->
-                            </tr>
+                                </tr>
                         @endforeach
                         </tbody>
                     </table>
@@ -163,6 +163,18 @@
 <!-- 自定义js -->
 <script src="{{ asset('/assets/admin/js/content.js') }}"></script>
 
+<script>
+    $(function () {
+        $('#main-table tbody tr').click(function () {
+            {
+                var src = $(this).data('src');
+                console.log(src);
+                window.location.href = src;
+            }
+        });
+    });
+
+</script>
 
 </body>
 
