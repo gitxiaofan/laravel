@@ -600,9 +600,13 @@ body.canvas-menu.mini-navbar nav.navbar-static-side {
 }
 
 .top-navigation .navbar-brand {
-    background: #1ab394;
+    background: none;
     color: #fff;
     padding: 15px 25px;
+    float: none;
+    display: inline-block;
+    height: auto;
+    line-height: auto;
 }
 
 .top-navigation .navbar-top-links li:last-child {
@@ -637,7 +641,7 @@ body.canvas-menu.mini-navbar nav.navbar-static-side {
 
 .navbar-toggle {
     background-color: #1ab394;
-    color: #fff;
+    color: inherit;
     padding: 6px 12px;
     font-size: 14px;
 }
@@ -4723,6 +4727,7 @@ body.modal-open {
 
 .search-form {
     margin-top: 10px;
+    margin-bottom: 20px;
 }
 
 .search-result h3 {
@@ -7533,8 +7538,8 @@ body.skin-3 {
         display: none;
     }
     .navbar-header {
-        display: inline;
-        float: left;
+        display: block;
+        float: none;
     }
     .sidebard-panel {
         z-index: 2;
@@ -7838,7 +7843,14 @@ body.skin-3 {
 }
 
 .navbar-header {
-    width: 60%;
+    width: 100%;
+    background: #1ab394;
+}
+
+@media (min-width: 768px) {
+    .navbar-header {
+        text-align: center;
+    }
 }
 
 .bs-glyphicons {
@@ -7906,3 +7918,5 @@ body.skin-3 {
 .inmodal .modal-title { font-size: 20px;}
 .datepicker {z-index: 9999 !important;}
 .clockpicker-popover {z-index: 9999 !important;}
+
+.top-logo p { padding: 0; margin: 0;}

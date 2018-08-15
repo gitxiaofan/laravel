@@ -22,238 +22,88 @@
     <link href="{{ asset('/assets/admin/css/style.css') }}" rel="stylesheet">
 </head>
 
-<body class="fixed-sidebar full-height-layout gray-bg" style="overflow:hidden">
+<body class="full-height-layout gray-bg top-navigation">
 
 <div id="wrapper">
-    <!--左侧导航开始-->
-    <nav class="navbar-default navbar-static-side" role="navigation">
-        <div class="nav-close"><i class="fa fa-times-circle"></i>
-        </div>
-        <div class="sidebar-collapse">
-            <ul class="nav" id="side-menu">
-                <li class="nav-header">
-                    <div class="dropdown profile-element">
-                        <span><img width="70" alt="image" class="img-circle" src="{{ asset('/assets/admin/img/a3.jpg') }}" /></span>
-                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                                <span class="clear">
-                               <span class="block m-t-xs"><strong class="font-bold"></strong></span>
-                                <span class="text-muted text-xs block">{{ session()->get('admin')['user_name'] }}<b class="caret"></b></span>
-                                </span>
-                        </a>
-                        <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                            <li><a class="J_menuItem" href="">修改头像</a>
-                            </li>
-                            <li><a class="J_menuItem" href="">个人资料</a>
-                            </li>
-                            <li class="divider"></li>
-                            <li><a href="{{ url('logout') }}">安全退出</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="logo-element">P
-                    </div>
-                </li>
-                <li>
-                    <a class="J_menuItem" href="{{ url('show') }}"><i class="fa fa-home"></i><span class="nav-label">仪表盘</span></a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="fa fa-calendar"></i>
-                        <span class="nav-label">生产平台</span>
-                        <span class="fa arrow"></span>
+    <div id="page-wrapper" class="gray-bg">
+        <div class="row border-bottom white-bg">
+            <nav class="navbar navbar-static-top" role="navigation">
+                <div class="navbar-header">
+                    <button id="collapse" aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" class="navbar-toggle collapsed" type="button">
+                        <i class="fa fa-reorder"></i>
+                    </button>
+                    <a href="#" class="navbar-brand">
+                        <div class="top-logo">
+                            <p>全球油气EPCI项目跟踪系统</p>
+                            <p class="hidden-xs">Tracing system of International Oil and Gas EPCI Projects</p>
+                        </div>
                     </a>
-                    <ul class="nav nav-second-level">
-                        <li>
-                            <a class="J_menuItem" href="{{ url('proone/index') }}">所有项目</a>
-                        </li>
-                        <li>
-                            <a class="J_menuItem" href="{{ url('proone/create') }}">创建项目</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="fa fa-calendar"></i>
-                        <span class="nav-label">钻井平台</span>
-                        <span class="fa arrow"></span>
-                    </a>
-                    <ul class="nav nav-second-level">
-                        <li>
-                            <a class="J_menuItem" href="{{ url('proone/index') }}">所有项目</a>
-                        </li>
-                        <li>
-                            <a class="J_menuItem" href="{{ url('proone/create') }}">创建项目</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="fa fa-calendar"></i>
-                        <span class="nav-label">生活平台</span>
-                        <span class="fa arrow"></span>
-                    </a>
-                    <ul class="nav nav-second-level">
-                        <li>
-                            <a class="J_menuItem" href="{{ url('proone/index') }}">所有项目</a>
-                        </li>
-                        <li>
-                            <a class="J_menuItem" href="{{ url('proone/create') }}">创建项目</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="fa fa-calendar"></i>
-                        <span class="nav-label">重吊铺管船</span>
-                        <span class="fa arrow"></span>
-                    </a>
-                    <ul class="nav nav-second-level">
-                        <li>
-                            <a class="J_menuItem" href="{{ url('proone/index') }}">所有项目</a>
-                        </li>
-                        <li>
-                            <a class="J_menuItem" href="{{ url('proone/create') }}">创建项目</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="fa fa-calendar"></i>
-                        <span class="nav-label">FSRU</span>
-                        <span class="fa arrow"></span>
-                    </a>
-                    <ul class="nav nav-second-level">
-                        <li>
-                            <a class="J_menuItem" href="{{ url('proone/index') }}">所有项目</a>
-                        </li>
-                        <li>
-                            <a class="J_menuItem" href="{{ url('proone/create') }}">创建项目</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="fa fa-calendar"></i>
-                        <span class="nav-label">LNG模块</span>
-                        <span class="fa arrow"></span>
-                    </a>
-                    <ul class="nav nav-second-level">
-                        <li>
-                            <a class="J_menuItem" href="{{ url('proone/index') }}">所有项目</a>
-                        </li>
-                        <li>
-                            <a class="J_menuItem" href="{{ url('proone/create') }}">创建项目</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="fa fa-calendar"></i>
-                        <span class="nav-label">水下设施和工程</span>
-                        <span class="fa arrow"></span>
-                    </a>
-                    <ul class="nav nav-second-level">
-                        <li>
-                            <a class="J_menuItem" href="{{ url('proone/index') }}">所有项目</a>
-                        </li>
-                        <li>
-                            <a class="J_menuItem" href="{{ url('proone/create') }}">创建项目</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="fa fa-clone"></i>
-                        <span class="nav-label">页面</span>
-                        <span class="fa arrow"></span>
-                    </a>
-                    <ul class="nav nav-second-level">
-                        <li>
-                            <a class="J_menuItem" href="">所有页面</a>
-                        </li>
-                        <li>
-                            <a class="J_menuItem" href="">添加页面</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="fa fa-user"></i>
-                        <span class="nav-label">管理员</span>
-                        <span class="fa arrow"></span>
-                    </a>
-                    <ul class="nav nav-second-level">
-                        <li>
-                            <a class="J_menuItem" href="{{ url('admin/index') }}">所有管理员</a>
-                        </li>
-                        <li>
-                            <a class="J_menuItem" href="{{ url('admin/create') }}">添加管理员</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="fa fa-cog"></i>
-                        <span class="nav-label">设置</span>
-                        <span class="fa arrow"></span>
-                    </a>
-                    <ul class="nav nav-second-level">
-                        <li>
-                            <a class="J_menuItem" href="">常规设置</a>
-                        </li>
-                        <li>
-                            <a class="J_menuItem" href="">短信发送</a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-    </nav>
-    <!--左侧导航结束-->
-    <!--右侧部分开始-->
-    <div id="page-wrapper" class="gray-bg dashbard-1">
-        <div class="row border-bottom">
-            <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
-                <div class="navbar-header"><a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
                 </div>
-            </nav>
-        </div>
-        <div class="row content-tabs">
-            <button class="roll-nav roll-left J_tabLeft"><i class="fa fa-backward"></i>
-            </button>
-            <nav class="page-tabs J_menuTabs">
-                <div class="page-tabs-content">
-                    <a href="javascript:;" class="active J_menuTab" data-id="{{ url('show') }}">仪表盘</a>
-                </div>
-            </nav>
-            <button class="roll-nav roll-right J_tabRight"><i class="fa fa-forward"></i>
-            </button>
-            <div class="btn-group roll-nav roll-right">
-                <button class="dropdown J_tabClose" data-toggle="dropdown">关闭操作<span class="caret"></span>
+                <div class="navbar-collapse collapse" id="navbar">
+                    <ul class="nav navbar-nav">
+                        <li class="active">
+                            <a class="J_menuItem" href="{{ url('show') }}">首页</a>
+                        </li>
+                        <li>
+                            <a class="J_menuItem" href="{{ url('proone/index') }}">生产平台</a>
+                        </li>
+                        <li>
+                            <a class="J_menuItem" href="{{ url('proone/index') }}">钻井平台</a>
+                        </li>
+                        <li>
+                            <a class="J_menuItem" href="{{ url('proone/index') }}">生活平台</a>
+                        </li>
+                        <li>
+                            <a class="J_menuItem" href="{{ url('proone/index') }}">重吊铺管船</a>
+                        </li>
+                        <li>
+                            <a class="J_menuItem" href="{{ url('proone/index') }}">FSRU</a>
+                        </li>
+                        <li>
+                            <a class="J_menuItem" href="{{ url('proone/index') }}">LNG模块</a>
+                        </li>
+                        <li>
+                            <a class="J_menuItem" href="{{ url('proone/index') }}">水下设施和工程</a>
+                        </li>
+                        <li class="dropdown">
+                            <a aria-expanded="false" role="button" href="#" class="dropdown-toggle" data-toggle="dropdown">设置 <span class="caret"></span></a>
+                            <ul role="menu" class="dropdown-menu">
+                                <li><a href="">常规设置</a></li>
+                                <li><a href="">页面</a></li>
+                                <li><a href="{{ url('admin/index') }}">管理员</a></li>
+                            </ul>
+                        </li>
 
-                </button>
-                <ul role="menu" class="dropdown-menu dropdown-menu-right">
-                    <li class="J_tabShowActive"><a>定位当前选项卡</a>
-                    </li>
-                    <li class="divider"></li>
-                    <li class="J_tabCloseAll"><a>关闭全部选项卡</a>
-                    </li>
-                    <li class="J_tabCloseOther"><a>关闭其他选项卡</a>
-                    </li>
-                </ul>
-            </div>
-            <a href="{{ url('logout') }}" class="roll-nav roll-right J_tabExit"><i class="fa fa fa-sign-out"></i> 退出</a>
+                    </ul>
+                    <ul class="nav navbar-top-links navbar-right">
+                        <li>
+                            <a href="{{ url('logout') }}">
+                                <i class="fa fa-sign-out"></i> 退出
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
         </div>
         <div class="row J_mainContent" id="content-main">
             <iframe class="J_iframe" name="iframe0" width="100%" height="100%" src="{{ url('show') }}" frameborder="0" data-id="{{ url('show') }}" seamless></iframe>
         </div>
+        <div class="wrapper wrapper-content">
+
+        </div>
         <div class="footer">
-            <div class="pull-right">&copy; 2018-2025 <a href="/" target="_blank">项目网</a>
+            <div class="pull-right">
+                By：<a href="http://www.zi-han.net" target="_blank">zihan's blog</a>
+            </div>
+            <div>
+                <strong>Copyright</strong> H+ &copy; 2014
             </div>
         </div>
+
     </div>
-    <!--右侧部分结束-->
 </div>
+
+
 
 <!-- 全局js -->
 <script src="{{ asset('/assets/admin/js/jquery.min.js') }}"></script>
@@ -268,6 +118,15 @@
 
 <!-- 第三方插件 -->
 <script src="{{ asset('/assets/admin/js/plugins/pace/pace.min.js') }}"></script>
+
+<script>
+    $('#navbar .nav > li > a').click(function () {
+        $('#collapse').addClass("collapsed");
+        $('#collapse').attr("aria-expanded",false);
+        $("#navbar").removeClass("in");
+        $("#navbar").attr("aria-expanded",false);
+    });
+</script>
 
 </body>
 

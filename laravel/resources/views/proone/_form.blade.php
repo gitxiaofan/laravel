@@ -72,6 +72,11 @@
         <div class="col-sm-8">
             <div id="shareholder" class="form-control-list">
                 <ul class="list-unstyled">
+                    <li>
+                        <div class="col-xs-3">记录时间</div>
+                        <div class="col-xs-7">股东权益人</div>
+                        <div class="col-xs-2">操作</div>
+                    </li>
                     @if(isset($project->shareholder) && $project->shareholder)
                         @foreach(json_decode($project->shareholder,true) as $key => $item)
                             <li>
@@ -103,6 +108,11 @@
         <div class="col-sm-8">
             <div id="operator" class="form-control-list">
                 <ul class="list-unstyled">
+                    <li>
+                        <div class="col-xs-3">记录时间</div>
+                        <div class="col-xs-7">作业方</div>
+                        <div class="col-xs-2">操作</div>
+                    </li>
                     @if(isset($project->operator) && $project->operator)
                         @foreach(json_decode($project->operator,true) as $key => $item)
                             <li>
@@ -128,6 +138,11 @@
         <div class="col-sm-8">
             <div id="p_power" class="form-control-list">
                 <ul class="list-unstyled">
+                    <li>
+                        <div class="col-xs-3">记录时间</div>
+                        <div class="col-xs-7">处理能力</div>
+                        <div class="col-xs-2">操作</div>
+                    </li>
                     @if(isset($project->p_power) && $project->p_power)
                         @foreach(json_decode($project->p_power,true) as $key => $item)
                             <li>
@@ -153,6 +168,11 @@
         <div class="col-sm-8">
             <div id="s_power" class="form-control-list">
                 <ul class="list-unstyled">
+                    <li>
+                        <div class="col-xs-3">记录时间</div>
+                        <div class="col-xs-7">储存能力</div>
+                        <div class="col-xs-2">操作</div>
+                    </li>
                     @if(isset($project->s_power) && $project->s_power)
                         @foreach(json_decode($project->s_power,true) as $key => $item)
                             <li>
@@ -189,6 +209,11 @@
         <div class="col-sm-8">
             <div id="product_time" class="form-control-list">
                 <ul class="list-unstyled">
+                    <li>
+                        <div class="col-xs-3">记录时间</div>
+                        <div class="col-xs-7">最终投资决定和投产时间</div>
+                        <div class="col-xs-2">操作</div>
+                    </li>
                     @if(isset($project->product_time) && $project->product_time)
                         @foreach(json_decode($project->product_time,true) as $key => $item)
                             <li>
@@ -214,6 +239,12 @@
         <div class="col-sm-8">
             <div class="event_record form-control-list">
                 <ul class="list-unstyled">
+                    <li>
+                        <div class="col-xs-3">记录时间</div>
+                        <div class="col-xs-5">大事件内容</div>
+                        <div class="col-xs-2">记录人</div>
+                        <div class="col-xs-2">操作</div>
+                    </li>
                     @if(count($project->ProoneRecord) != 0)
                         @foreach($project->ProoneRecord as $key => $item)
                             <li>

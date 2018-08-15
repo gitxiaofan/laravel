@@ -31,46 +31,80 @@
                     </div>
                 </div>
                 <div class="ibox-content">
-                    <div class="row">
-                        <div class="col-sm-9">
-                            <a href="{{ url('proone/create') }}" class="btn btn-primary ">创建项目</a>
-                        </div>
-                        <div class="col-sm-3">
-                            <form action="">
-                                <div class="input-group">
-                                    <input type="text" name="k" value="" placeholder="请输入关键词" class="input-sm form-control">
-                                    <span class="input-group-btn">
-                                        <button type="submit" class="btn btn-sm btn-primary"> 搜索</button>
-                                    </span>
+                    <div class="search-form">
+                        <div class="row">
+                            <form class="form-horizontal">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">项目名称：</label>
+                                        <div class="col-sm-8">
+                                            <input id="name" name="name" value="" class="form-control" type="text">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">开发方式：</label>
+                                        <div class="col-sm-8">
+                                            <select class="form-control m-b" name="model">
+                                                @if(count($projects) != 0)
+                                                    @foreach($projects[0]->model_config() as $k => $val)
+                                                        <option value="{{ $k }}">{{ $val }}</option>
+                                                    @endforeach
+                                                @endif
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">地区：</label>
+                                        <div class="col-sm-8">
+                                            <select class="form-control m-b" name="model">
+                                                @if(count($projects) != 0)
+                                                    @foreach($projects[0]->region_config() as $k => $val)
+                                                        <option value="{{ $k }}">{{ $val }}</option>
+                                                    @endforeach
+                                                @endif
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">项目状态：</label>
+                                        <div class="col-sm-8">
+                                            <select class="form-control m-b" name="model">
+                                                @if(count($projects) != 0)
+                                                    @foreach($projects[0]->status_config() as $k => $val)
+                                                        <option value="{{ $k }}">{{ $val }}</option>
+                                                    @endforeach
+                                                @endif
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">招投标状态：</label>
+                                        <div class="col-sm-8">
+                                            <select class="form-control m-b" name="model">
+                                                @if(count($projects) != 0)
+                                                    @foreach($projects[0]->bs_config() as $k => $val)
+                                                        <option value="{{ $k }}">{{ $val }}</option>
+                                                    @endforeach
+                                                @endif
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="text-center">
+                                    <button class="btn btn-primary" type="submit">筛选</button>
+                                    <a href="{{ url('proone/create') }}" class="btn btn-default">创建项目</a>
                                 </div>
                             </form>
                         </div>
-                    </div>
-                    <div class="row">
-                        <form class="form-horizontal">
-                            <div class="col-sm-4">
-                                <div class="form-group">
-                                    <label class="col-sm-3 control-label">项目名称：</label>
-                                    <div class="col-sm-8">
-                                        <input id="name" name="name" value="" class="form-control" type="text">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-4">
-                                <div class="form-group">
-                                    <label class="col-sm-3 control-label">开发方式：</label>
-                                    <div class="col-sm-8">
-                                        <select class="form-control m-b" name="model">
-                                            @if(count($projects) != 0)
-                                                @foreach($projects[0]->model_config() as $k => $val)
-                                                    <option value="{{ $k }}">{{ $val }}</option>
-                                                @endforeach
-                                            @endif
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
                     </div>
                     <table class="table table-hover table-bordered table-striped">
                         <thead>
@@ -83,7 +117,7 @@
                             <th>招投标状态</th>
                             <th>重大事件记录</th>
                             <th>记录人</th>
-                            <th>操作</th>
+                            <!--<th>操作</th>-->
                         </tr>
                         </thead>
                         <tbody>
@@ -97,12 +131,14 @@
                                 <td>{{ $project->bs_config($project->bidding_status) }}</td>
                                 <td>{{ count($project->ProoneRecord) != 0 ? $project->ProoneRecord[0]->content : '' }}</td>
                                 <td>{{ count($project->ProoneRecord) != 0 ? $project->ProoneRecord[0]->Admin->user_name : '' }}</td>
+                                <!--
                                 <td>
                                     <div class="btn-group">
                                         <a href="{{ url('proone/update',['id'=>$project->id]) }}" class="btn btn-info btn-sm">修改</a>
                                         <a href="{{ url('proone/delete',['id'=>$project->id]) }}" onclick="if (confirm('您确定删除吗？') == false) return false;" class="btn btn-danger btn-sm">删除</a>
                                     </div>
                                 </td>
+                                -->
                             </tr>
                         @endforeach
                         </tbody>

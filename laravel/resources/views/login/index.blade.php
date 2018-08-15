@@ -24,7 +24,7 @@
     <div>
         <div>
 
-            <h1 class="logo-name">EPCI</h1>
+            <h1 class="logo-name"><i class="fa fa-cubes"></i></h1>
 
         </div>
         <h3>管理员登陆</h3>

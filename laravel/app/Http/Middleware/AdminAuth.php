@@ -9,11 +9,19 @@ class AdminAuth
 {
     public function handle($request, Closure $next)
     {
+
         $admin = Session::get('admin');
-        if (isset($admin) && $admin['id']){
-            return $next($request);
+        if (!$admin['id']){
+            return redirect('login');
         }
 
-        return redirect('login');
+        //dd($request->route()->getAction()['as']);
+        /*
+        if($request->route()->getAction()['as'] == 'one_update'){
+            return redirect('login');
+        }
+        */
+
+        return $next($request);
     }
 }
