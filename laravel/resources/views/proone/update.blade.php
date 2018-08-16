@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>修改项目</title>
+    <title>项目详情和招投标状态</title>
 
     <link rel="shortcut icon" href="favicon.ico">
     <link href="{{ asset('/assets/admin/css/bootstrap.min.css') }}" rel="stylesheet">

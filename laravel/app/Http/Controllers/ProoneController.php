@@ -12,9 +12,10 @@ class ProoneController extends Controller
 
     public function index(Request $request)
     {
+        $page_size = config('config.PAGE_SIZE') ? config('config.PAGE_SIZE') : 20;
         $projects = Proone::orderby('id','DESC')->where(function($query) use($request){
             $this->condition($request,$query);
-        })->paginate(20);
+        })->paginate($page_size);
         return view('proone.index',[
             'projects' => $projects,
         ]);
@@ -110,6 +111,15 @@ class ProoneController extends Controller
 
         return view('proone.create',[
             'project' => $proone,
+        ]);
+    }
+
+    public function detail($id)
+    {
+        $proone = Proone::find($id);
+        return view('proone.detail',[
+            'project' => $proone,
+            'detail' => 1,
         ]);
     }
 

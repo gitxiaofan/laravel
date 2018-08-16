@@ -22,18 +22,19 @@ Route::group(['middleware' => ['web']],function (){
 });
 
 Route::group(['middleware' => ['web','adminauth']], function (){
-    Route::get('index', ['uses' => 'HomeController@index']);
-    Route::get('show', ['uses' => 'HomeController@show']);
-    Route::get('admin/index', ['uses' => 'AdminController@index']);
-    Route::any('admin/create', ['uses' => 'AdminController@create']);
-    Route::any('admin/update/{id}', ['uses' => 'AdminController@update']);
-    Route::get('admin/check_name', ['uses' => 'AdminController@check_name']);
-    Route::get('admin/delete/{id}', ['uses' => 'AdminController@delete']);
-    Route::get('proone/index', ['uses' => 'ProoneController@index']);
-    Route::any('proone/create', ['uses' => 'ProoneController@create']);
-    Route::any('proone/update/{id}', ['as' => 'one_update', 'uses' => 'ProoneController@update']);
-    Route::any('proone/delete/{id}', ['uses' => 'ProoneController@delete']);
-    Route::get('proone/deleterecord/{id}', ['uses' => 'ProoneController@deleteRecord']);
+    Route::get('index', ['as' => 'index','uses' => 'HomeController@index']);
+    Route::get('show', ['as' => 'show', 'uses' => 'HomeController@show']);
+    Route::get('admin/index', ['as' => 'admin_index', 'uses' => 'AdminController@index']);
+    Route::any('admin/create', ['as' => 'admin_create', 'uses' => 'AdminController@create']);
+    Route::any('admin/update/{id}', ['as' => 'admin_update', 'uses' => 'AdminController@update']);
+    Route::get('admin/check_name', ['as' => 'admin_check_name', 'uses' => 'AdminController@check_name']);
+    Route::get('admin/delete/{id}', ['as' => 'admin_delete','uses' => 'AdminController@delete']);
+    Route::get('proone/index', ['as' => 'proone_index', 'uses' => 'ProoneController@index']);
+    Route::any('proone/create', ['as' => 'proone_create', 'uses' => 'ProoneController@create']);
+    Route::any('proone/detail/{id}', ['as' => 'proone_detail', 'uses' => 'ProoneController@detail']);
+    Route::any('proone/update/{id}', ['as' => 'proone_update', 'uses' => 'ProoneController@update']);
+    Route::any('proone/delete/{id}', ['as' => 'proone_delete', 'uses' => 'ProoneController@delete']);
+    Route::get('proone/deleterecord/{id}', ['as' => 'proone_deleterecord', 'uses' => 'ProoneController@deleteRecord']);
 });
 
 
