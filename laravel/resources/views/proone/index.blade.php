@@ -33,7 +33,7 @@
                 <div class="ibox-content">
                     <div class="search-form">
                         <div class="row">
-                            <form class="form-horizontal">
+                            <form class="form-horizontal" type="GET">
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label class="col-sm-3 control-label">项目名称：</label>
@@ -47,6 +47,7 @@
                                         <label class="col-sm-3 control-label">开发方式：</label>
                                         <div class="col-sm-8">
                                             <select class="form-control m-b" name="model">
+                                                <option value="" selected>下拉选择</option>
                                                 @if(count($projects) != 0)
                                                     @foreach($projects[0]->model_config() as $k => $val)
                                                         <option value="{{ $k }}">{{ $val }}</option>
@@ -60,7 +61,8 @@
                                     <div class="form-group">
                                         <label class="col-sm-3 control-label">地区：</label>
                                         <div class="col-sm-8">
-                                            <select class="form-control m-b" name="model">
+                                            <select class="form-control m-b" name="region">
+                                                <option value="" selected>下拉选择</option>
                                                 @if(count($projects) != 0)
                                                     @foreach($projects[0]->region_config() as $k => $val)
                                                         <option value="{{ $k }}">{{ $val }}</option>
@@ -74,7 +76,8 @@
                                     <div class="form-group">
                                         <label class="col-sm-3 control-label">项目状态：</label>
                                         <div class="col-sm-8">
-                                            <select class="form-control m-b" name="model">
+                                            <select class="form-control m-b" name="status">
+                                                <option value="" selected>下拉选择</option>
                                                 @if(count($projects) != 0)
                                                     @foreach($projects[0]->status_config() as $k => $val)
                                                         <option value="{{ $k }}">{{ $val }}</option>
@@ -88,7 +91,8 @@
                                     <div class="form-group">
                                         <label class="col-sm-3 control-label">招投标状态：</label>
                                         <div class="col-sm-8">
-                                            <select class="form-control m-b" name="model">
+                                            <select class="form-control m-b" name="bidding_status">
+                                                <option value="" selected>下拉选择</option>
                                                 @if(count($projects) != 0)
                                                     @foreach($projects[0]->bs_config() as $k => $val)
                                                         <option value="{{ $k }}">{{ $val }}</option>

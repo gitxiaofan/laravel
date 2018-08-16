@@ -25,14 +25,15 @@
         <div class="col-sm-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>修改项目</h5>
+                    <h5>项目详情和招投标状态</h5>
                     <div class="ibox-tools">
-                        <a href="">
+                        <a href="{{ url('proone/index') }}">
                             <i class="fa fa-reply"></i> 返回上一页
                         </a>
                     </div>
                 </div>
                 <div class="ibox-content">
+                    <h2 class="form-title text-center">{{ $project->name }}</h2>
                     @include('proone._form')
                 </div>
             </div>

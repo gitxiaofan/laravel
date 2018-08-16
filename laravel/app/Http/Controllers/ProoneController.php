@@ -10,12 +10,33 @@ use Illuminate\Support\Facades\Session;
 class ProoneController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
-        $projects = Proone::orderby('id','DESC')->paginate(20);
+        $projects = Proone::orderby('id','DESC')->where(function($query) use($request){
+            $this->condition($request,$query);
+        })->paginate(20);
         return view('proone.index',[
             'projects' => $projects,
         ]);
+    }
+
+    private function condition($request,$query)
+    {
+        if($name = $request->input('name')){
+            $query->where('name','LIKE','%'.$name.'%');
+        }
+        if($model = $request->input('model')){
+            $query->where('model','=',$model);
+        }
+        if($status = $request->input('status')){
+            $query->where('status','=',$status);
+        }
+        if($region = $request->input('region')){
+            $query->where('region','=',$region);
+        }
+        if($bidding_status = $request->input('bidding_status')){
+            $query->where('bidding_status','=',$bidding_status);
+        }
     }
 
     public function create(Request $request)
