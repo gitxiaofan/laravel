@@ -16,7 +16,6 @@ class AdminAuth
         }
 
         if($admin['gid'] !== 1){
-            $roles = array();
             switch ($admin['gid']){
                 case 2:
                     $roles = config('admin.editor');
@@ -28,20 +27,11 @@ class AdminAuth
                     $roles = array();
                     break;
             }
-            dd($roles);
-            /*
             $action = $request->route()->getAction()['as'];
-            if(!in_array($action,$roles)){
-                return '无权限';
+            if(!$roles || !in_array($action,$roles)){
+                return redirect('role');
             }
-            */
         }
-        //dd($request->route()->getAction()['as']);
-        /*
-        if($request->route()->getAction()['as'] == 'one_update'){
-            return redirect('login');
-        }
-        */
 
         return $next($request);
     }

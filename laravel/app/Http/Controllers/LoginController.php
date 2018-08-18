@@ -49,6 +49,6 @@ class LoginController extends Controller
     public function logout()
     {
         Session::forget('admin');
-        return redirect('login');
+        return redirect('index');
     }
 }

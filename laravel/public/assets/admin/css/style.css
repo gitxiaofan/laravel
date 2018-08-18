@@ -548,7 +548,7 @@ body.canvas-menu.mini-navbar nav.navbar-static-side {
 
 .top-navigation .navbar-nav .dropdown-menu > .active > a {
     background: white;
-    color: #1ab394;
+    color: #9b6678;
     font-weight: bold;
 }
 
@@ -563,13 +563,13 @@ body.canvas-menu.mini-navbar nav.navbar-static-side {
 
 .top-navigation .nav > li > a {
     padding: 15px 20px;
-    color: #676a6c;
+    color: #990033;
 }
 
 .top-navigation .nav > li a:hover,
 .top-navigation .nav > li a:focus {
     background: #fff;
-    color: #1ab394;
+    color: #9b6678;
 }
 
 .top-navigation .nav > li.active {
@@ -578,7 +578,7 @@ body.canvas-menu.mini-navbar nav.navbar-static-side {
 }
 
 .top-navigation .nav > li.active > a {
-    color: #1ab394;
+    color: #9b6678;
 }
 
 .top-navigation .navbar-right {
@@ -7924,3 +7924,18 @@ body.skin-3 {
 #main-table tbody tr { cursor: pointer;}
 
 .form-title { font-weight: 700;}
+
+.main-form .form-control[disabled] { background-color: #fff;}
+
+.home-show { background: url("../img/home_bg.jpg") no-repeat center center fixed; background-size: cover;}
+.home-box { background-color: rgba(54, 141, 237, 0.6); color: #fff; padding: 50px 10px; text-align: center; border-radius: 8px; margin: 0 20px 50px;}
+.home-box h2 { font-weight: 700;}
+.home-show .wrapper-content { padding-top: 50px;}
+.home-box:hover { cursor: pointer; background-color: rgba(54, 141, 237, 1);}
+
+#myheader {
+    background: -webkit-linear-gradient(red, blue); /* Safari 5.1 - 6.0 */
+    background: -o-linear-gradient(red, blue); /* Opera 11.1 - 12.0 */
+    background: -moz-linear-gradient(red, blue); /* Firefox 3.6 - 15 */
+    background: linear-gradient(#EB8B00, #BD0300); /* 标准的语法 */
+}

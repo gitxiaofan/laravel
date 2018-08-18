@@ -43,6 +43,7 @@ class AdminController extends Controller
                 'mobile' => $request->input('mobile') ? $request->input('mobile') : '',
                 'email' => $request->input('email') ? $request->input('email'):'',
                 'sex' => $request->input('sex') ? $request->input('sex'):0,
+                'gid' => $request->input('gid') ? $request->input('gid'):3,
             ];
             if(Admin::create($data)){
                 return redirect('admin/index');
@@ -83,6 +84,7 @@ class AdminController extends Controller
             $admin->mobile = $request->input('mobile');
             $admin->email = $request->input('email');
             $admin->sex = $request->input('sex');
+            $admin->gid = $request->input('gid');
 
             if($admin->save()){
                 return redirect('admin/index');

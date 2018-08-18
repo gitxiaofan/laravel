@@ -9,15 +9,34 @@ use Illuminate\Support\Facades\Session;
 
 class ProoneController extends Controller
 {
+    public $admin;
+    public $gid;
+    public function __construct()
+    {
+
+    }
 
     public function index(Request $request)
     {
+        $proone = new Proone();
         $page_size = config('config.PAGE_SIZE') ? config('config.PAGE_SIZE') : 20;
-        $projects = Proone::orderby('id','DESC')->where(function($query) use($request){
+        $projects = $proone->orderby('id','DESC')->where(function($query) use($request){
             $this->condition($request,$query);
         })->paginate($page_size);
+        $this->get_admin();
+        $pro_config = [
+            'model_config' => $proone->model_config(),
+            'region_config' => $proone->region_config(),
+            'status_config' => $proone->status_config(),
+            'bs_config' => $proone->bs_config(),
+        ];
+        $operation = ($this->gid == 1 || $this->gid == 2) ? 'proone/update' : 'proone/detail';
         return view('proone.index',[
             'projects' => $projects,
+            'gid' => $this->gid,
+            'operation' => $operation,
+            'search' => $request->all(),
+            'pro_config' => $pro_config,
         ]);
     }
 
@@ -43,7 +62,7 @@ class ProoneController extends Controller
     public function create(Request $request)
     {
         $proone = new Proone();
-
+        $this->get_admin();
         if($request->isMethod('post')){
 
             $validate = \Validator::make($request->input(),[
@@ -75,7 +94,7 @@ class ProoneController extends Controller
             if($product_times = $request->input('product_time')){
                 $product_time = $this->data_json($product_times);
             }
-            $admin = Session::get('admin');
+
             $data = [
                 'name' => $request->input('name') ? $request->input('name') : '',
                 'model' => intval($request->input('model')),
@@ -92,13 +111,13 @@ class ProoneController extends Controller
                 'bidding_status' => intval($request->input('bidding_status')),
                 'bs_remark' => $request->input('bs_remark') ? $request->input('bs_remark') : '',
                 'product_time' => isset($product_time) ? $product_time : '',
-                'created_admin' => $admin['id'],
+                'created_admin' => $this->admin['id'],
             ];
             if($res = Proone::create($data)){
                 if($record = $request->input('event_record')){
                     $data = [
                         'pro_id' => $res->id,
-                        'admin_id' => $admin['id'],
+                        'admin_id' => $this->admin['id'],
                         'content' => $record,
                     ];
                     ProoneRecord::create($data);
@@ -111,14 +130,18 @@ class ProoneController extends Controller
 
         return view('proone.create',[
             'project' => $proone,
+            'gid' => $this->gid,
+            'detail' => 0,
         ]);
     }
 
     public function detail($id)
     {
         $proone = Proone::find($id);
+        $this->get_admin();
         return view('proone.detail',[
             'project' => $proone,
+            'gid' => $this->gid,
             'detail' => 1,
         ]);
     }
@@ -126,6 +149,7 @@ class ProoneController extends Controller
     public function update(Request $request,$id)
     {
         $proone = Proone::find($id);
+        $this->get_admin();
         if($request->isMethod('post')){
 
             $validate = \Validator::make($request->input(),[
@@ -157,7 +181,7 @@ class ProoneController extends Controller
             if($product_times = $request->input('product_time')){
                 $product_time = $this->data_json($product_times);
             }
-            $admin = Session::get('admin');
+
             $data = [
                 'name' => $request->input('name') ? $request->input('name') : '',
                 'model' => intval($request->input('model')),
@@ -174,14 +198,14 @@ class ProoneController extends Controller
                 'bidding_status' => intval($request->input('bidding_status')),
                 'bs_remark' => $request->input('bs_remark') ? $request->input('bs_remark') : '',
                 'product_time' => isset($product_time) ? $product_time : '',
-                'updated_admin' => $admin['id'],
+                'updated_admin' => $this->admin['id'],
             ];
 
             if($proone->update($data)){
                 if($record = $request->input('event_record')){
                     $data = [
                         'pro_id' => $id,
-                        'admin_id' => $admin['id'],
+                        'admin_id' => $this->admin['id'],
                         'content' => $record,
                     ];
                     ProoneRecord::create($data);
@@ -193,6 +217,8 @@ class ProoneController extends Controller
         }
         return view('proone.update',[
             'project' => $proone,
+            'gid' => $this->gid,
+            'detail' => 0,
         ]);
     }
 
@@ -219,5 +245,123 @@ class ProoneController extends Controller
         $num = ProoneRecord::find($id)->delete();
         return $num;
     }
+
+    private function get_admin()
+    {
+        $this->admin = Session::get('admin');
+        $this->gid = $this->admin['gid'] ? $this->admin['gid'] : 3;
+    }
+
+    public function toExcel(Request $request)
+    {
+        $projects = Proone::orderby('id','DESC')->where(function($query) use($request){
+            $this->condition($request,$query);
+        })->get();
+        $filename = '生产平台_'.date('Ymd',time()).'.csv';
+        $title = ['ID','项目名称','开发方式','地区','项目状态','招投标状态','重大事件记录','记录人'];
+        $data = array();
+        foreach ($projects as $project){
+            $data[] = [
+                $project->id,
+                $project->name,
+                $project->model_config($project->model),
+                $project->region_config($project->region),
+                $project->status_config($project->status),
+                $project->bs_config($project->bidding_status),
+                count($project->ProoneRecord) != 0 ? $project->ProoneRecord[0]->content : '',
+                count($project->ProoneRecord) != 0 ? $project->ProoneRecord[0]->Admin->user_name : '',
+            ];
+        }
+        $this->exportToExcel($filename,$title,$data);
+    }
+
+    public function detailToExcel($id)
+    {
+        $project = Proone::find($id);
+        $filename = '项目详情_'. $project->id. '_'. date('Ymd',time()).'.csv';
+        $title = ['项目名称', '项目值'];
+        $data = [
+            ['ID', $project->id],
+            ['项目名称', $project->name],
+            ['开发方式', $project->model_config($project->model)],
+            ['项目状态', $project->status_config($project->status)],
+            ['地区', $project->region_config($project->region)],
+            ['油气田名称', $project->oil_name],
+            ['油气田描述', $project->oil_desc],
+            ['水深', $project->depth],
+            ['油气田位置', $project->location],
+            ['招投标状态', $project->bs_config($project->bidding_status)],
+            ['招投标备注', $project->bs_remark],
+        ];
+        if(isset($project->shareholder) && $project->shareholder){
+            $data = array_merge($data,$this->jsonExcel($project->shareholder,'股东权益人','股东权益人'));
+        }
+        if(isset($project->operator) && $project->operator){
+            $data = array_merge($data,$this->jsonExcel($project->operator,'作业方','作业方'));
+        }
+        if(isset($project->p_power) && $project->p_power){
+            $data = array_merge($data,$this->jsonExcel($project->p_power,'处理能力','处理能力'));
+        }
+        if(isset($project->s_power) && $project->s_power){
+            $data = array_merge($data,$this->jsonExcel($project->s_power,'储存能力','储存能力'));
+        }
+        if(isset($project->product_time) && $project->product_time){
+            $data = array_merge($data,$this->jsonExcel($project->product_time,'最终投资决定','最终投资决定和投产时间'));
+        }
+        if(isset($project->ProoneRecord) && $project->ProoneRecord){
+            $data[] = ['项目重大事件记录',''];
+            $data[] = ['记录时间','大事件内容'];
+            foreach($project->ProoneRecord as $key => $item){
+                $data[] = [date( 'Y-m-d H:i:s',$item->created_at),$item->content];
+            }
+        }
+        $this->exportToExcel($filename,$title,$data);
+    }
+
+    private function jsonExcel($object,$name,$item_name)
+    {
+        $data = array();
+        $data[] = [$name,''];
+        $data[] = ['记录时间',$item_name];
+        foreach(json_decode($object,true) as $key => $item){
+            $data[] = [$item['time'],$item['content']];
+        }
+        return $data;
+    }
+
+    /**
+     * @creator Jimmy
+     * @data 2018/1/05
+     * @desc 数据导出到excel(csv文件)
+     * @param $filename 导出的csv文件名称 如date("Y年m月j日").'-test.csv'
+     * @param array $tileArray 所有列名称
+     * @param array $dataArray 所有列数据
+     */
+    public function exportToExcel($filename, $tileArray=[], $dataArray=[]){
+        ini_set('memory_limit','512M');
+        ini_set('max_execution_time',0);
+        ob_end_clean();
+        ob_start();
+        header("Content-Type: text/csv");
+        header("Content-Disposition:filename=".$filename);
+        $fp=fopen('php://output','w');
+        fwrite($fp, chr(0xEF).chr(0xBB).chr(0xBF));//转码 防止乱码(比如微信昵称(乱七八糟的))
+        fputcsv($fp,$tileArray);
+        $index = 0;
+        foreach ($dataArray as $item) {
+            if($index==1000){
+                $index=0;
+                ob_flush();
+                flush();
+            }
+            $index++;
+            fputcsv($fp,$item);
+        }
+
+        ob_flush();
+        flush();
+        ob_end_clean();
+    }
+
 
 }

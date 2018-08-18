@@ -16,4 +16,9 @@ class HomeController extends Controller
     {
         return view('home.show');
     }
+
+    public function role()
+    {
+        return view('home.role');
+    }
 }

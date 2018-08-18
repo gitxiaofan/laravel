@@ -25,7 +25,7 @@
                 <div class="ibox-title">
                     <h5>创建管理员</h5>
                     <div class="ibox-tools">
-                        <a href="">
+                        <a href="{{ url('admin/index') }}">
                             <i class="fa fa-reply"></i> 返回上一页
                         </a>
                     </div>

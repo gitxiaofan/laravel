@@ -23,9 +23,9 @@
         <div class="col-sm-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>用户</h5>
+                    <h5>管理员</h5>
                     <div class="ibox-tools">
-                        <a href="">
+                        <a href="{{ url('admin/index') }}">
                             <i class="fa fa-refresh"></i> 刷新列表
                         </a>
                     </div>
@@ -67,7 +67,7 @@
                             <td>{{ $admin->nickname }}</td>
                             <td>{{ $admin->mobile }}</td>
                             <td>{{ $admin->sex_config($admin->sex) }}</td>
-                            <td>{{ $admin->gid }}</td>
+                            <td>{{ $admin->role_config($admin->gid) }}</td>
                             <td>{{ date('Y-m-d H:i:s', $admin->created_at) }}</td>
                             <td>
                                 <div class="btn-group">

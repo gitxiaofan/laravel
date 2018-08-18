@@ -45,4 +45,19 @@ class Admin extends Model
         }
         return $arr;
     }
+
+    public function role_config($ind = NULL)
+    {
+        $arr = [
+            3 => '访客',
+            2 => '编辑',
+            1 => '管理员',
+        ];
+
+        if ($ind !== NULL){
+            return array_key_exists($ind,$arr) ? $arr[$ind] : '未知';
+        }
+        return $arr;
+    }
+
 }

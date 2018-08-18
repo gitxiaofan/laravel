@@ -38,6 +38,8 @@
                 <input name="password" type="password" class="form-control" placeholder="密码" required>
             </div>
             <button type="submit" class="btn btn-primary block full-width m-b">登 录</button>
+            <p class="text-muted text-center"> <a href="{{ url('index') }}">返回首页</a>
+            </p>
         </form>
         @if(count($errors))
             <div class="alert alert-danger alert-dismissable">

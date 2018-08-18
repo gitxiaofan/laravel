@@ -25,7 +25,7 @@
                 <div class="ibox-title">
                     <h5>生产平台</h5>
                     <div class="ibox-tools">
-                        <a href="">
+                        <a href="{{ url('proone/index') }}">
                             <i class="fa fa-refresh"></i> 刷新列表
                         </a>
                     </div>
@@ -33,12 +33,12 @@
                 <div class="ibox-content">
                     <div class="search-form">
                         <div class="row">
-                            <form class="form-horizontal" type="GET">
+                            <form id="search-form" class="form-horizontal" type="GET">
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label class="col-sm-3 control-label">项目名称：</label>
                                         <div class="col-sm-8">
-                                            <input id="name" name="name" value="" class="form-control" type="text">
+                                            <input id="name" name="name" value="{{ isset($search['name']) && $search['name'] ? $search['name'] : '' }}" class="form-control" type="text">
                                         </div>
                                     </div>
                                 </div>
@@ -47,12 +47,10 @@
                                         <label class="col-sm-3 control-label">开发方式：</label>
                                         <div class="col-sm-8">
                                             <select class="form-control m-b" name="model">
-                                                <option value="" selected>下拉选择</option>
-                                                @if(count($projects) != 0)
-                                                    @foreach($projects[0]->model_config() as $k => $val)
-                                                        <option value="{{ $k }}">{{ $val }}</option>
-                                                    @endforeach
-                                                @endif
+                                                <option value="">下拉选择</option>
+                                                @foreach($pro_config['model_config'] as $k => $val)
+                                                    <option {{ isset($search['model']) && $search['model'] == $k ? 'selected' : '' }} value="{{ $k }}">{{ $val }}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>
@@ -62,12 +60,10 @@
                                         <label class="col-sm-3 control-label">地区：</label>
                                         <div class="col-sm-8">
                                             <select class="form-control m-b" name="region">
-                                                <option value="" selected>下拉选择</option>
-                                                @if(count($projects) != 0)
-                                                    @foreach($projects[0]->region_config() as $k => $val)
-                                                        <option value="{{ $k }}">{{ $val }}</option>
-                                                    @endforeach
-                                                @endif
+                                                <option value="">下拉选择</option>
+                                                @foreach($pro_config['region_config'] as $k => $val)
+                                                    <option {{ isset($search['region']) && $search['region'] == $k ? 'selected' : '' }} value="{{ $k }}">{{ $val }}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>
@@ -77,12 +73,10 @@
                                         <label class="col-sm-3 control-label">项目状态：</label>
                                         <div class="col-sm-8">
                                             <select class="form-control m-b" name="status">
-                                                <option value="" selected>下拉选择</option>
-                                                @if(count($projects) != 0)
-                                                    @foreach($projects[0]->status_config() as $k => $val)
-                                                        <option value="{{ $k }}">{{ $val }}</option>
-                                                    @endforeach
-                                                @endif
+                                                <option value="">下拉选择</option>
+                                                @foreach($pro_config['status_config'] as $k => $val)
+                                                    <option {{ isset($search['status']) && $search['status'] == $k ? 'selected' : '' }} value="{{ $k }}">{{ $val }}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>
@@ -92,12 +86,10 @@
                                         <label class="col-sm-3 control-label">招投标状态：</label>
                                         <div class="col-sm-8">
                                             <select class="form-control m-b" name="bidding_status">
-                                                <option value="" selected>下拉选择</option>
-                                                @if(count($projects) != 0)
-                                                    @foreach($projects[0]->bs_config() as $k => $val)
-                                                        <option value="{{ $k }}">{{ $val }}</option>
-                                                    @endforeach
-                                                @endif
+                                                <option value="">下拉选择</option>
+                                                @foreach($pro_config['bs_config'] as $k => $val)
+                                                    <option {{ isset($search['bidding_status']) && $search['bidding_status'] == $k ? 'selected' : '' }} value="{{ $k }}">{{ $val }}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>
@@ -106,6 +98,7 @@
                                 <div class="text-center">
                                     <button class="btn btn-primary" type="submit">筛选</button>
                                     <a href="{{ url('proone/create') }}" class="btn btn-default">创建项目</a>
+                                    <a id="toexcel" href="javascript:void(0);" class="btn btn-default">导出Excel</a>
                                 </div>
                             </form>
                         </div>
@@ -121,12 +114,11 @@
                             <th>招投标状态</th>
                             <th>重大事件记录</th>
                             <th>记录人</th>
-                            <!--<th>操作</th>-->
                         </tr>
                         </thead>
                         <tbody>
                         @foreach($projects as $project)
-                                <tr data-id="{{ $project->id }}" data-src="{{ url('proone/update',['id'=>$project->id]) }}">
+                                <tr data-id="{{ $project->id }}" data-src="{{ url($operation,['id'=>$project->id]) }}">
                                     <td>{{ $project->id }}</td>
                                     <td>{{ $project->name }}</td>
                                     <td>{{ $project->model_config($project->model) }}</td>
@@ -135,14 +127,6 @@
                                     <td>{{ $project->bs_config($project->bidding_status) }}</td>
                                     <td>{{ count($project->ProoneRecord) != 0 ? $project->ProoneRecord[0]->content : '' }}</td>
                                     <td>{{ count($project->ProoneRecord) != 0 ? $project->ProoneRecord[0]->Admin->user_name : '' }}</td>
-                                <!--
-                                <td>
-                                    <div class="btn-group">
-                                        <a href="{{ url('proone/update',['id'=>$project->id]) }}" class="btn btn-info btn-sm">修改</a>
-                                        <a href="{{ url('proone/delete',['id'=>$project->id]) }}" onclick="if (confirm('您确定删除吗？') == false) return false;" class="btn btn-danger btn-sm">删除</a>
-                                    </div>
-                                </td>
-                                -->
                                 </tr>
                         @endforeach
                         </tbody>
@@ -175,6 +159,13 @@
                 console.log(src);
                 window.location.href = src;
             }
+        });
+
+        $('#toexcel').click(function () {
+            var toexcel = '{{ url('proone/toexcel') }}';
+            $('#search-form').attr('action', toexcel);
+            $('#search-form').submit();
+            $('#search-form').attr('action', '');
         });
     });
 

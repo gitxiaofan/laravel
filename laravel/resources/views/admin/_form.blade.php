@@ -33,6 +33,16 @@
         </div>
     </div>
     <div class="form-group">
+        <label class="col-sm-3 control-label">权限：</label>
+        <div class="col-sm-8">
+            <select class="form-control m-b" name="gid">
+                @foreach($admin->role_config() as $k => $val)
+                    <option {{ isset($admin->gid) && $admin->gid == $k ? 'selected' : '' }} value="{{ $k }}">{{ $val }}</option>
+                @endforeach
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
         <label class="col-sm-3 control-label">昵称：</label>
         <div class="col-sm-8">
             <input id="nickname" name="nickname" value="{{ old('nickname') ? old('nickname') : $admin->nickname }}" class="form-control" type="text" aria-required="true" aria-invalid="true" class="error">

@@ -11,7 +11,6 @@
     <link rel="shortcut icon" href="favicon.ico">
     <link href="{{ asset('/assets/admin/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('/assets/admin/css/font-awesome.css') }}" rel="stylesheet">
-    <link href="{{ asset('/assets/admin/css/plugins/iCheck/custom.css') }}" rel="stylesheet">
     <link href="{{ asset('/assets/admin/css/plugins/datapicker/datepicker3.css') }}" rel="stylesheet">
     <link href="{{ asset('/assets/admin/css/plugins/clockpicker/clockpicker.css') }}" rel="stylesheet">
     <link href="{{ asset('/assets/admin/css/animate.css') }}" rel="stylesheet">
@@ -19,7 +18,7 @@
 
 </head>
 
-<body class="gray-bg">
+<body class="gray-bg" id="full-content">
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
         <div class="col-sm-12">
@@ -49,16 +48,6 @@
 
 <!-- 自定义js -->
 <script src="{{ asset('/assets/admin/js/content.js') }}"></script>
-
-<script src="{{ asset('/assets/admin/js/plugins/iCheck/icheck.min.js') }}"></script>
-<script>
-    $(document).ready(function () {
-        $('.i-checks').iCheck({
-            checkboxClass: 'icheckbox_square-green',
-            radioClass: 'iradio_square-green',
-        });
-    });
-</script>
 
 <!-- jQuery Validation plugin javascript-->
 <script src="{{ asset('/assets/admin/js/plugins/validate/jquery.validate.min.js') }}"></script>
@@ -186,6 +175,30 @@
      });
  })
 </script>
+
+<script language="javascript">
+
+    function printdiv(printpage)
+    {
+        var newstr = printpage.innerHTML;
+        var oldstr = document.body.innerHTML;
+        document.body.innerHTML =newstr;
+        window.print();
+        document.body.innerHTML=oldstr;
+        return false;
+    }
+
+    window.onload=function()
+    {
+        var btn_print = document.getElementById("btn_print");
+        var div_print = document.getElementById("full-content");
+        btn_print.onclick=function()
+        {
+            printdiv(div_print);
+        }
+    }
+</script>
+
 
 </body>
 
