@@ -21,6 +21,7 @@ Route::group(['middleware' => ['web']],function (){
     Route::get('index', ['as' => 'index','uses' => 'HomeController@index']);
     Route::get('show', ['as' => 'show', 'uses' => 'HomeController@show']);
     Route::get('role', ['as' => 'role', 'uses' => 'HomeController@role']);
+    Route::get('page/detail/{id}', ['as' => 'page_detail', 'uses' => 'PageController@detail']);
 
 });
 
@@ -38,6 +39,11 @@ Route::group(['middleware' => ['web','adminauth']], function (){
     Route::any('proone/update/{id}', ['as' => 'proone_update', 'uses' => 'ProoneController@update']);
     Route::any('proone/delete/{id}', ['as' => 'proone_delete', 'uses' => 'ProoneController@delete']);
     Route::get('proone/deleterecord/{id}', ['as' => 'proone_deleterecord', 'uses' => 'ProoneController@deleteRecord']);
+    Route::get('page/index', ['as' => 'page_index', 'uses' => 'PageController@index']);
+    Route::any('page/create', ['as' => 'page_create', 'uses' => 'PageController@create']);
+    Route::any('page/update/{id}', ['as' => 'page_update', 'uses' => 'PageController@update']);
+    Route::any('page/upload', ['as' => 'page_upload', 'uses' => 'PageController@upload']);
+    Route::get('page/delete/{id}', ['as' => 'page_delete', 'uses' => 'PageController@delete']);
 });
 
 

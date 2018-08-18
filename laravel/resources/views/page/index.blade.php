@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>管理员列表</title>
+    <title>页面列表</title>
 
     <link rel="shortcut icon" href="favicon.ico">
     <link href="{{ asset('/assets/admin/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -23,9 +23,9 @@
         <div class="col-sm-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>管理员</h5>
+                    <h5>页面</h5>
                     <div class="ibox-tools">
-                        <a href="{{ url('admin/index') }}">
+                        <a href="{{ url('page/index') }}">
                             <i class="fa fa-refresh"></i> 刷新列表
                         </a>
                     </div>
@@ -33,12 +33,12 @@
                 <div class="ibox-content">
                     <div class="row">
                         <div class="col-sm-9">
-                            <a href="{{ url('admin/create') }}" class="btn btn-primary ">创建管理员</a>
+                            <a href="{{ url('page/create') }}" class="btn btn-primary ">创建页面</a>
                         </div>
                         <div class="col-sm-3">
                             <form action="">
                                 <div class="input-group">
-                                    <input type="text" name="user_name" value="{{ isset($search['user_name']) && $search['user_name'] ? $search['user_name'] : '' }}" placeholder="请输入用户名" class="input-sm form-control">
+                                    <input type="text" name="title" value="{{ isset($search['title']) && $search['title'] ? $search['title'] : '' }}" placeholder="请输入标题" class="input-sm form-control">
                                     <span class="input-group-btn">
                                         <button type="submit" class="btn btn-sm btn-primary"> 搜索</button>
                                     </span>
@@ -50,38 +50,35 @@
                         <thead>
                         <tr>
                             <th>ID</th>
-                            <th>用户名</th>
-                            <th>昵称</th>
-                            <th>手机号</th>
-                            <th>性别</th>
-                            <th>角色</th>
+                            <th>页面标题</th>
+                            <th>页面URL</th>
+                            <th>创建者</th>
                             <th>创建时间</th>
                             <th>操作</th>
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($admins as $admin)
-                        <tr>
-                            <td>{{ $admin->id }}</td>
-                            <td>{{ $admin->user_name }}</td>
-                            <td>{{ $admin->nickname }}</td>
-                            <td>{{ $admin->mobile }}</td>
-                            <td>{{ $admin->sex_config($admin->sex) }}</td>
-                            <td>{{ $admin->role_config($admin->gid) }}</td>
-                            <td>{{ date('Y-m-d H:i:s', $admin->created_at) }}</td>
-                            <td>
-                                <div class="btn-group">
-                                    <a href="{{ url('admin/update',['id'=>$admin->id]) }}" class="btn btn-info btn-sm">修改</a>
-                                    <a href="{{ url('admin/delete',['id'=>$admin->id]) }}" onclick="if (confirm('您确定删除吗？') == false) return false;" class="btn btn-danger btn-sm">删除</a>
-                                </div>
-                            </td>
-                        </tr>
+                        @foreach($pages as $page)
+                            <tr>
+                                <td>{{ $page->id }}</td>
+                                <td>{{ $page->title }}</td>
+                                <td>{{ url('page/detail',['id'=>$page->id]) }}</td>
+                                <td>{{ $page->Admin->user_name }}</td>
+                                <td>{{ date('Y-m-d H:i:s', $page->created_at) }}</td>
+                                <td>
+                                    <div class="btn-group">
+                                        <a href="{{ url('page/detail',['id'=>$page->id]) }}" class="btn btn-primary btn-sm">浏览</a>
+                                        <a href="{{ url('page/update',['id'=>$page->id]) }}" class="btn btn-info btn-sm">修改</a>
+                                        <a href="{{ url('page/delete',['id'=>$page->id]) }}" onclick="if (confirm('您确定删除吗？') == false) return false;" class="btn btn-danger btn-sm">删除</a>
+                                    </div>
+                                </td>
+                            </tr>
                         @endforeach
                         </tbody>
                     </table>
                     <div class="col-sm-12">
                         <nav class="pull-right">
-                            {{ $admins->links() }}
+                            {{ $pages->links() }}
                         </nav>
                     </div>
                 </div>

@@ -7,12 +7,18 @@ use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $admins = Admin::orderby('id','DESC')->paginate(20);
+        $page_size = config('config.PAGE_SIZE') ? config('config.PAGE_SIZE') : 20;
+        $admins = Admin::orderby('id','DESC')->where(function($query) use($request){
+            if($user_name = $request->input('user_name')){
+                $query->where('user_name','LIKE','%'.$user_name.'%');
+            }
+        })->paginate($page_size);
 
         return view('admin.index',[
             'admins' => $admins,
+            'search' => $request->all(),
         ]);
     }
 

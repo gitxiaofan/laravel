@@ -65,20 +65,20 @@
                         </li>
                         @endif
                         <li>
-                            <a class="J_menuItem" href="">关于我们</a>
+                            <a class="J_menuItem" href="{{ url('page/detail',['id'=>3]) }}">关于我们</a>
                         </li>
                         <li>
-                            <a class="J_menuItem" href="">联系我们</a>
+                            <a class="J_menuItem" href="{{ url('page/detail',['id'=>4]) }}">联系我们</a>
                         </li>
                         <li>
-                            <a class="J_menuItem" href="">报告</a>
+                            <a class="J_menuItem" href="{{ url('page/detail',['id'=>6]) }}">报告</a>
                         </li>
                         @if(session()->get('admin')['id'])
                         <li class="dropdown">
                             <a aria-expanded="false" role="button" href="#" class="dropdown-toggle" data-toggle="dropdown">设置 <span class="caret"></span></a>
                             <ul role="menu" class="dropdown-menu">
                                 <li><a class="J_menuItem" href="">常规设置</a></li>
-                                <li><a class="J_menuItem" href="">页面</a></li>
+                                <li><a class="J_menuItem" href="{{ url('page/index') }}">页面</a></li>
                                 <li><a class="J_menuItem" href="{{ url('admin/index') }}">管理员</a></li>
                             </ul>
                         </li>
