@@ -11,11 +11,8 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Route::group(['middleware' => ['web']],function (){
+    Route::any('/','HomeController@index');
     Route::any('login', ['uses' => 'LoginController@index']);
     Route::any('logout', ['uses' => 'LoginController@logout']);
     Route::get('index', ['as' => 'index','uses' => 'HomeController@index']);
