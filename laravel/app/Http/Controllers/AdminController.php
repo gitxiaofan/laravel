@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Admin;
+use App\AdminStatus;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class AdminController extends Controller
 {
@@ -48,7 +50,8 @@ class AdminController extends Controller
                 'nickname' => $request->input('nickname') ? $request->input('nickname'):'',
                 'mobile' => $request->input('mobile') ? $request->input('mobile') : '',
                 'email' => $request->input('email') ? $request->input('email'):'',
-                'sex' => $request->input('sex') ? $request->input('sex'):0,
+                'sex' => $request->input('sex') ? $request->input('sex'):1,
+                'status' => $request->input('status') ? $request->input('status'):1,
                 'gid' => $request->input('gid') ? $request->input('gid'):3,
             ];
             if(Admin::create($data)){
@@ -86,11 +89,15 @@ class AdminController extends Controller
             if($request->input('password')){
                 $admin->password = md5($request->input('password'));
             }
-            $admin->nickname = $request->input('nickname');
-            $admin->mobile = $request->input('mobile');
-            $admin->email = $request->input('email');
-            $admin->sex = $request->input('sex');
-            $admin->gid = $request->input('gid');
+            $admin->nickname = $request->input('nickname') ? $request->input('nickname') : '';
+            $admin->mobile = $request->input('mobile') ? $request->input('mobile') : '';
+            $admin->email = $request->input('email') ? $request->input('email') : '';
+            $admin->sex = $request->input('sex') ? $request->input('sex') : 1;
+            $admin->status = $request->input('status') ? $request->input('status') : 1;
+            if($admin->status == 1){
+                AdminStatus::where('admin_id', '=', $id)->delete();
+            }
+            $admin->gid = $request->input('gid') ? $request->input('gid') : 3;
 
             if($admin->save()){
                 return redirect('admin/index');
@@ -126,5 +133,28 @@ class AdminController extends Controller
         }else{
             return 'true';
         }
+    }
+
+    public function account(Request $request)
+    {
+        $ac = Session::get('admin');
+        $id = $ac['id'];
+        $admin = Admin::find($id);
+        if($request->isMethod('POST')){
+
+            if($request->input('password')){
+                $admin->password = md5($request->input('password'));
+            }
+            $admin->nickname = $request->input('nickname') ? $request->input('nickname') : '';
+            $admin->mobile = $request->input('mobile') ? $request->input('mobile') : '';
+            $admin->email = $request->input('email') ? $request->input('email') : '';
+            $admin->sex = $request->input('sex') ? $request->input('sex') : 1;
+            $admin->save();
+            return redirect()->back();
+        }
+        return view('admin.account',[
+            'admin' => $admin,
+            'account' => 1,
+        ]);
     }
 }

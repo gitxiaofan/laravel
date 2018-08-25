@@ -17,7 +17,7 @@
 
 <body class="gray-bg">
 
-<div class="middle-box text-center animated fadeInDown">
+<div class="middle-box text-center">
     <h1>Error</h1>
     <h3 class="font-bold">无操作权限</h3>
 

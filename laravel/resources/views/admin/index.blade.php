@@ -18,7 +18,7 @@
 </head>
 
 <body class="gray-bg">
-<div class="wrapper wrapper-content animated fadeInRight">
+<div class="wrapper wrapper-content">
     <div class="row">
         <div class="col-sm-12">
             <div class="ibox float-e-margins">
@@ -55,6 +55,7 @@
                             <th>手机号</th>
                             <th>性别</th>
                             <th>角色</th>
+                            <th>状态</th>
                             <th>创建时间</th>
                             <th>操作</th>
                         </tr>
@@ -68,6 +69,7 @@
                             <td>{{ $admin->mobile }}</td>
                             <td>{{ $admin->sex_config($admin->sex) }}</td>
                             <td>{{ $admin->role_config($admin->gid) }}</td>
+                            <td>{{ $admin->status_config($admin->status) }}</td>
                             <td>{{ date('Y-m-d H:i:s', $admin->created_at) }}</td>
                             <td>
                                 <div class="btn-group">

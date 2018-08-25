@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\AdminStatus;
 use Closure;
 use Illuminate\Support\Facades\Session;
 

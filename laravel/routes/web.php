@@ -11,23 +11,24 @@
 |
 */
 
-Route::group(['middleware' => ['web']],function (){
+Route::group(['middleware' => ['web','adminvisitor']],function (){
     Route::any('/','HomeController@index');
     Route::any('login', ['uses' => 'LoginController@index']);
     Route::any('logout', ['uses' => 'LoginController@logout']);
-    Route::get('index', ['as' => 'index','uses' => 'HomeController@index']);
+    Route::get('index/{id?}', ['as' => 'index','uses' => 'HomeController@index']);
     Route::get('show', ['as' => 'show', 'uses' => 'HomeController@show']);
     Route::get('role', ['as' => 'role', 'uses' => 'HomeController@role']);
     Route::get('page/detail/{id}', ['as' => 'page_detail', 'uses' => 'PageController@detail']);
 
 });
 
-Route::group(['middleware' => ['web','adminauth']], function (){
+Route::group(['middleware' => ['web','adminauth','adminvisitor']], function (){
     Route::get('admin/index', ['as' => 'admin_index', 'uses' => 'AdminController@index']);
     Route::any('admin/create', ['as' => 'admin_create', 'uses' => 'AdminController@create']);
     Route::any('admin/update/{id}', ['as' => 'admin_update', 'uses' => 'AdminController@update']);
     Route::get('admin/check_name', ['as' => 'admin_check_name', 'uses' => 'AdminController@check_name']);
     Route::get('admin/delete/{id}', ['as' => 'admin_delete','uses' => 'AdminController@delete']);
+    Route::any('account', ['as' => 'account','uses' => 'AdminController@account']);
     Route::get('proone/index', ['as' => 'proone_index', 'uses' => 'ProoneController@index']);
     Route::get('proone/toexcel', ['as' => 'proone_toexcel', 'uses' => 'ProoneController@toExcel']);
     Route::any('proone/create', ['as' => 'proone_create', 'uses' => 'ProoneController@create']);

@@ -18,7 +18,7 @@
 </head>
 
 <body class="gray-bg">
-<div class="wrapper wrapper-content  animated fadeInRight article">
+<div class="wrapper wrapper-content  animated">
     <div class="row">
         <div class="col-lg-10 col-lg-offset-1">
             <div class="ibox">

@@ -54,13 +54,13 @@ class Proone extends Model
     public function status_config($ind = NULL)
     {
         $arr = [
-            1 => 'Planning',
-            2 => 'Pre-FEED',
-            3 => 'FEED',
-            4 => 'EPC',
-            5 => 'FID',
-            6 => 'Building',
-            7 => 'Deliver',
+            1 => '计划中',
+            2 => '预前端设计',
+            3 => '前端设计',
+            4 => '设计、采购、建造',
+            5 => '最终投资决定',
+            6 => '建造中',
+            7 => '已交付',
         ];
 
         if ($ind !== NULL){

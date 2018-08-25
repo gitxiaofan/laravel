@@ -122,7 +122,7 @@ class ProoneController extends Controller
                     ];
                     ProoneRecord::create($data);
                 }
-                return redirect('proone/index');
+                return redirect()->back();
             }else{
                 return redirect()->back();
             }
@@ -210,7 +210,7 @@ class ProoneController extends Controller
                     ];
                     ProoneRecord::create($data);
                 }
-                return redirect('proone/index');
+                return redirect()->back();
             }else{
                 return redirect()->back();
             }

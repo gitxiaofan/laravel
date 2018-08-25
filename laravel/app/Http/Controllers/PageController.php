@@ -137,11 +137,10 @@ class PageController extends Controller
             $photo = $request->file('photo');
             $extension = $photo->extension();
             $filename = time().mt_rand(100,999). '.'. $extension;
-            $store_result = $photo->storeAs('photo', $filename);
+            $store_result = $photo->storeAs('public', $filename);
             $data = [
                 'success' => true,
-                //'file_path' => $store_result,
-                'file_path' => Storage::url('app/photo/'. $filename),
+                'file_path' => '/storage/'. $filename,
             ];
             return response()->json($data);
         }

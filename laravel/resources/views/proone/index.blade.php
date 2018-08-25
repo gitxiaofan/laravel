@@ -18,7 +18,7 @@
 </head>
 
 <body class="gray-bg">
-<div class="wrapper wrapper-content animated fadeInRight">
+<div class="wrapper wrapper-content">
     <div class="row">
         <div class="col-sm-12">
             <div class="ibox float-e-margins">
@@ -96,7 +96,7 @@
                                 </div>
                                 <div class="clearfix"></div>
                                 <div class="text-center">
-                                    <button class="btn btn-primary" type="submit">筛选</button>
+                                    <button class="btn btn-primary" type="submit">搜索</button>
                                     <a href="{{ url('proone/create') }}" class="btn btn-default">创建项目</a>
                                     <a id="toexcel" href="javascript:void(0);" class="btn btn-default">导出Excel</a>
                                 </div>
@@ -125,7 +125,7 @@
                                     <td>{{ $project->region_config($project->region) }}</td>
                                     <td>{{ $project->status_config($project->status) }}</td>
                                     <td>{{ $project->bs_config($project->bidding_status) }}</td>
-                                    <td>{{ count($project->ProoneRecord) != 0 ? $project->ProoneRecord[0]->content : '' }}</td>
+                                    <td>{{ count($project->ProoneRecord) != 0 ? mb_substr($project->ProoneRecord[0]->content,0,32,'utf-8') : '' }}</td>
                                     <td>{{ count($project->ProoneRecord) != 0 ? $project->ProoneRecord[0]->Admin->user_name : '' }}</td>
                                 </tr>
                         @endforeach

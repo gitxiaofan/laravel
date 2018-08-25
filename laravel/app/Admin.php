@@ -11,7 +11,7 @@ class Admin extends Model
 
     protected $primaryKey = 'id';
 
-    protected $fillable = ['user_name','password','nickname','email','mobile','sex'];
+    protected $fillable = ['user_name','password','nickname','email','mobile','sex','gid','status'];
 
     public function freshTimestamp()
     {
@@ -52,6 +52,19 @@ class Admin extends Model
             3 => '访客',
             2 => '编辑',
             1 => '管理员',
+        ];
+
+        if ($ind !== NULL){
+            return array_key_exists($ind,$arr) ? $arr[$ind] : '未知';
+        }
+        return $arr;
+    }
+
+    public function status_config($ind = NULL)
+    {
+        $arr = [
+            1 => '正常',
+            2 => '冻结',
         ];
 
         if ($ind !== NULL){

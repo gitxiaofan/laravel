@@ -19,7 +19,7 @@
 </head>
 
 <body class="gray-bg" id="full-content">
-<div class="wrapper wrapper-content animated fadeInRight">
+<div class="wrapper wrapper-content">
     <div class="row">
         <div class="col-sm-12">
             <div class="ibox float-e-margins">
@@ -67,26 +67,6 @@
 <script src="{{ asset('/assets/admin/js/plugins/clockpicker/clockpicker.js') }}"></script>
 <script>
     $('.clockpicker').clockpicker();
-</script>
-
-<script>
-    $().ready(function(){
-        var icon = "<i class='fa fa-times-circle'></i> ";
-        $('#project_create').validate({
-            rules: {
-                name: {
-                    required: true,
-                    minlength: 2
-                }
-            },
-            messages: {
-                name: {
-                    required: icon + "请输入您的项目名称",
-                    minlength: icon + "项目名称必须两个字符以上"
-                }
-            }
-        });
-    });
 </script>
 
 <script>

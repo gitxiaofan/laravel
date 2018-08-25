@@ -77,7 +77,7 @@
                         <li class="dropdown">
                             <a aria-expanded="false" role="button" href="#" class="dropdown-toggle" data-toggle="dropdown">设置 <span class="caret"></span></a>
                             <ul role="menu" class="dropdown-menu">
-                                <li><a class="J_menuItem" href="">常规设置</a></li>
+                                <li><a class="J_menuItem" href="{{ url('account') }}">账户设置</a></li>
                                 <li><a class="J_menuItem" href="{{ url('page/index') }}">页面</a></li>
                                 <li><a class="J_menuItem" href="{{ url('admin/index') }}">管理员</a></li>
                             </ul>
@@ -101,7 +101,18 @@
             </nav>
         </div>
         <div class="row J_mainContent" id="content-main">
-            <iframe class="J_iframe" name="iframe0" width="100%" height="100%" src="{{ url('show') }}" frameborder="0" data-id="{{ url('show') }}" seamless></iframe>
+            <iframe class="J_iframe" name="iframe0" width="100%" height="100%" src="{{ isset($page_id) && $page_id ? url('page/detail',['id'=> $page_id]) : url('show') }}" frameborder="0" data-id="{{ url('show') }}" seamless></iframe>
+            <div id="home_loading">
+                <div class="spiner-example">
+                    <div class="sk-spinner sk-spinner-wave">
+                        <div class="sk-rect1"></div>
+                        <div class="sk-rect2"></div>
+                        <div class="sk-rect3"></div>
+                        <div class="sk-rect4"></div>
+                        <div class="sk-rect5"></div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="footer">
             <div class="text-center">

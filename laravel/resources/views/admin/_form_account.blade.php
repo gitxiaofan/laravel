@@ -15,8 +15,8 @@
     <div class="form-group">
         <label class="col-sm-3 control-label">用户名：</label>
         <div class="col-sm-8">
-            <input id="user_name" name="user_name" value="{{ old('user_name') ? old('user_name') : $admin->user_name }}" class="form-control" type="text">
-            <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 用户名是必填的，登陆使用</span>
+            <input id="user_name" name="user_name" value="{{ old('user_name') ? old('user_name') : $admin->user_name }}" class="form-control" type="text" disabled>
+            <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 用户名不可修改</span>
         </div>
     </div>
     <div class="form-group">
@@ -30,16 +30,6 @@
         <div class="col-sm-8">
             <input id="confirm_password" name="confirm_password" class="form-control" type="password">
             <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> {{ $admin->password ? '留空为不修改密码':'请再次输入您的密码' }}</span>
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="col-sm-3 control-label">权限：</label>
-        <div class="col-sm-8">
-            <select class="form-control m-b" name="gid">
-                @foreach($admin->role_config() as $k => $val)
-                    <option {{ isset($admin->gid) && $admin->gid == $k ? 'selected' : (!isset($admin->gid) && $k == 3 ? 'selected' : '') }} value="{{ $k }}">{{ $val }}</option>
-                @endforeach
-            </select>
         </div>
     </div>
     <div class="form-group">
@@ -66,16 +56,6 @@
             @foreach($admin->sex_config() as $k => $val)
                 <div class="radio i-checks checkbox-inline">
                     <label><input type="radio" value="{{ $k }}" {{ isset($admin->sex) && $admin->sex == $k ? 'checked' : (!isset($admin->sex) && $k == 1 ? 'checked' : '') }} name="sex"> <i></i> {{ $val }}</label>
-                </div>
-            @endforeach
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="col-sm-3 control-label">状态：</label>
-        <div class="col-sm-8">
-            @foreach($admin->status_config() as $k => $val)
-                <div class="radio i-checks checkbox-inline">
-                    <label><input type="radio" value="{{ $k }}" {{ isset($admin->status) && $admin->status == $k ? 'checked' : (!isset($admin->status) && $k == 1 ? 'checked' : '') }} name="status"> <i></i> {{ $val }}</label>
                 </div>
             @endforeach
         </div>

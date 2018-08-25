@@ -7910,9 +7910,9 @@ body.skin-3 {
 
 .form-control-list { margin-left: -15px; font-size: 14px;}
 .form-control-list ul { margin: 0;}
-.form-control-list ul li{ height: 34px; line-height: 34px; overflow: auto;}
+.form-control-list ul li{ line-height: 20px; overflow: auto; padding-bottom: 15px;}
 .form-control-list ul li .fcl-del { font-size: 13px; color: #ed5565;}
-.form-control-list .fcl-add { padding-left: 15px; height: 34px; line-height: 34px;}
+.form-control-list .fcl-add { padding-left: 15px; line-height: 20px;}
 
 .myclick { cursor: pointer; color: #1c84c6;}
 .inmodal .modal-title { font-size: 20px;}
@@ -7939,3 +7939,15 @@ body.skin-3 {
     background: -moz-linear-gradient(red, blue); /* Firefox 3.6 - 15 */
     background: linear-gradient(#EB8B00, #BD0300); /* 标准的语法 */
 }
+
+#home_loading {
+    position: absolute;
+    left: 0;
+    right: 0;
+}
+
+#content-main {
+    position: relative;
+}
+
+.J_iframe { position: relative;}
