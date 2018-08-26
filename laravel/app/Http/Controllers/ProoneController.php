@@ -122,7 +122,7 @@ class ProoneController extends Controller
                     ];
                     ProoneRecord::create($data);
                 }
-                return redirect()->back();
+                return redirect()->route('proone_update',[$res->id]);
             }else{
                 return redirect()->back();
             }

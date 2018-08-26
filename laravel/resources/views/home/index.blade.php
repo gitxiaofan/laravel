@@ -32,7 +32,7 @@
                     <button id="collapse" aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" class="navbar-toggle collapsed" type="button">
                         <i class="fa fa-reorder"></i>
                     </button>
-                    <a href="#" class="navbar-brand">
+                    <a href="{{ url('index') }}" class="navbar-brand">
                         <div class="top-logo">
                             <p>全球油气EPCI项目跟踪系统</p>
                             <p class="hidden-xs">Tracing system of International Oil and Gas EPCI Projects</p>
