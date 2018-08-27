@@ -47,7 +47,7 @@ class LoginController extends Controller
                 ];
                 //创建访问时间
                 if($admin['gid'] == 3){
-                    $this->update_admin_status($request,$res);
+                   $this->update_admin_status($request,$res);
                 }
                 Session::put('admin',$admin);
                 return redirect('index');
@@ -76,10 +76,11 @@ class LoginController extends Controller
     {
         $ip = ip2long($request->getClientIp());
         $session_expiretime = config('session.lifetime');
-        if(!$ip || $session_expiretime){
-            return;
+        if(!$ip || !$session_expiretime){
+            return false;
         }
-        $admin_status = AdminStatus::where('admin_id','=',$admin->id)->where('last_visited_time','>=',time() - $session_expiretime * 60)->first();
+	$expire_time = time() - $session_expiretime * 60;
+	$admin_status = AdminStatus::where('admin_id','=',$admin->id)->where('last_visited_time','>=',$expire_time)->first();
         if($admin_status){
             if($admin_status->ip == $ip){
                 $admin_status->last_visited_time = time();
@@ -103,4 +104,5 @@ class LoginController extends Controller
         $admin_status->last_visited_time = time();
         $admin_status->save();
     }
+
 }
