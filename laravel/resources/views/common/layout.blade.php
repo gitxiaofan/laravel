@@ -133,19 +133,6 @@
 <!-- 第三方插件 -->
 <script src="{{ asset('/assets/admin/js/plugins/pace/pace.min.js') }}"></script>
 
-<script>
-    $('#navbar .nav > li > a').click(function () {
-        $('#collapse').addClass("collapsed");
-        $('#collapse').attr("aria-expanded",false);
-        $("#navbar").removeClass("in");
-        $("#navbar").attr("aria-expanded",false);
-    });
-    $('#navbar .dropdown .dropdown-menu > li > a').click(function () {
-        $('#navbar .dropdown').removeClass('open');
-        $('#navbar .dropdown-toggle').attr("aria-expanded",false);
-    });
-</script>
-
 @section('js')
 
 @show
