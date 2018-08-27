@@ -243,7 +243,18 @@ class ProoneController extends Controller
     public function deleteRecord($id)
     {
         $num = ProoneRecord::find($id)->delete();
-        return $num;
+        if($num){
+            $data = [
+                'status' => 1,
+                'message' => 'success',
+            ];
+        }else{
+            $data = [
+                'status' => 0,
+                'message' => 'fail',
+            ];
+        }
+        return json_encode($data);
     }
 
     private function get_admin()

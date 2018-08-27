@@ -7907,6 +7907,7 @@ body.skin-3 {
 .form-control-list ul li{ line-height: 20px; overflow: auto; padding-bottom: 15px;}
 .form-control-list ul li .fcl-del { font-size: 13px; color: #ed5565;}
 .form-control-list .fcl-add { padding-left: 15px; line-height: 20px;}
+.form-control-list ul li .record-del { font-size: 13px; color: #ed5565; }
 
 .myclick { cursor: pointer; color: #1c84c6;}
 .inmodal .modal-title { font-size: 20px;}

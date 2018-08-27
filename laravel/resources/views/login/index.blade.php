@@ -23,7 +23,7 @@
                 </div>
                 <button type="submit" class="btn btn-primary block full-width m-b">登 录</button>
                 <p class="text-muted text-center">
-                    <a href="{{ url('index') }}">返回首页</a> | <a href="{{ url('index',['id' => 4]) }}">联系我们 马上获取账号</a>
+                    <a href="{{ url('index') }}">返回首页</a> | <a href="{{ url('page/detail',['id'=>4]) }}">联系我们 马上获取账号</a>
                 </p>
             </form>
             @if(count($errors))

@@ -7,12 +7,9 @@ use Illuminate\Support\Facades\Session;
 
 class HomeController extends Controller
 {
-    public function index(Request $request,$id=0)
+    public function index()
     {
-        $page_id = $id ? intval($id) : 0;
-        return view('home.index',[
-            'page_id' => $page_id,
-        ]);
+        return view('home.index');
     }
 
     public function show()

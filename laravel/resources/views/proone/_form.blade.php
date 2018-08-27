@@ -245,9 +245,11 @@
                             <li>
                                 <div class="col-sm-3">{{ $item['time'] }}</div>
                                 <div class="{{ $detail == 1 ? 'col-sm-9' : 'col-sm-7' }}">{{ $item['content'] }}</div>
+                                @if($detail != 1)
                                 <div class="col-sm-2">
                                     <div class="myclick fcl-del" data-id="{{ 'product_time-input-'.$key }}"><i class="fa fa-times"></i> 删除</div>
                                 </div>
+                                @endif
                             </li>
                             <input type="hidden" class="{{ 'product_time-input-'.$key }}" name="product_time[time][]" value="{{ $item['time'] }}">
                             <input type="hidden" class="{{ 'product_time-input-'.$key }}" name="product_time[content][]" value="{{ $item['content'] }}">
@@ -283,7 +285,7 @@
                                 <div class="col-sm-2">{{ $item->Admin->user_name }}</div>
                                 @if($detail != 1)
                                 <div class="col-sm-2">
-                                    <div class="myclick fcl-del" data-id="{{ $item->id }}"><i class="fa fa-times"></i> 删除</div>
+                                    <div class="myclick record-del" data-id="{{ $item->id }}"><i class="fa fa-times"></i> 删除</div>
                                 </div>
                                 @endif
                             </li>

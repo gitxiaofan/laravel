@@ -75,7 +75,7 @@
                 placeholder : '这里输入内容...',
                 pasteImage: true,
                 toolbarFloat:true,
-                toolbar : toolbar,  //工具栏
+                toolbar: ['title', 'bold', 'italic', 'underline', 'strikethrough', 'fontScale', 'color', '|', 'ol', 'ul', 'blockquote', 'code', 'table', '|', 'link', 'image', 'hr', '|', 'indent', 'outdent', 'alignment'],
                 upload : {
                     url : '{{ url('page/upload') }}', //文件上传的接口地址
                     params: '', //键值对,指定文件上传接口的额外参数,上传的时候随文件一起提交

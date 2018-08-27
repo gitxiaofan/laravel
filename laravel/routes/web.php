@@ -15,7 +15,7 @@ Route::group(['middleware' => ['web','adminvisitor']],function (){
     Route::any('/','HomeController@index');
     Route::any('login', ['uses' => 'LoginController@index']);
     Route::any('logout', ['uses' => 'LoginController@logout']);
-    Route::get('index/{id?}', ['as' => 'index','uses' => 'HomeController@index']);
+    Route::get('index', ['as' => 'index','uses' => 'HomeController@index']);
     Route::get('show', ['as' => 'show', 'uses' => 'HomeController@show']);
     Route::get('role', ['as' => 'role', 'uses' => 'HomeController@role']);
     Route::get('page/detail/{id}', ['as' => 'page_detail', 'uses' => 'PageController@detail']);

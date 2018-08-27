@@ -88,8 +88,8 @@
                         if(++count == 1){
                             var list_time = $('input[name="list-time-date"]').val() + ' ' + $('input[name="list-time-clock"]').val();
                             var list_content = $('input[name="list-content"]').val();
-                            console.log(list_time);
-                            console.log(list_content);
+                            //console.log(list_time);
+                            //console.log(list_content);
                             if(list_time.length == 0 || list_content.length == 0){
                                 alert('记录时间或'+ name +'不能为空');
                             }else{
@@ -116,9 +116,11 @@
             }
 
             $('.form-control-list').on('click','.fcl-del',function () {
-                var input_class = $(this).data('id');
-                $('.'+ input_class).remove();
-                $(this).closest('li').remove();
+                if(confirm("您确定删除吗？")) {
+                    var input_class = $(this).data('id');
+                    $('.' + input_class).remove();
+                    $(this).closest('li').remove();
+                }
             });
         });
 
@@ -126,16 +128,21 @@
 
     <script>
         $(function () {
-            $('.event_record .fcl-del').click(function () {
-                var id = $(this).data('id');
-                $.ajax({
-                    type: 'get',
-                    url: '{{ url('proone/deleterecord') }}' + '/' + id,
-                    dataType: 'json',
-                    success: function (data) {
-                        console.log(data);
-                    }
-                });
+            $('.event_record .record-del').click(function () {
+                var _self = $(this);
+                if(confirm("您确定删除吗？")){
+                    var id = $(this).data('id');
+                    $.ajax({
+                        type: 'get',
+                        url: '{{ url('proone/deleterecord') }}' + '/' + id,
+                        dataType: 'json',
+                        success: function (data) {
+                            if(data.status == 1){
+                                _self.closest('li').remove();
+                            }
+                        }
+                    });
+                }
             });
         })
     </script>

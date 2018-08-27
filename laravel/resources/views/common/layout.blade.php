@@ -77,7 +77,7 @@
                         <li>
                             <a href="{{ url('page/detail',['id'=>6]) }}">报告</a>
                         </li>
-                        @if(session()->get('admin')['id'])
+                        @if(session()->get('admin')['id'] && session()->get('admin')['gid'] != 3)
                             <li class="dropdown">
                                 <a aria-expanded="false" role="button" href="#" class="dropdown-toggle" data-toggle="dropdown">设置 <span class="caret"></span></a>
                                 <ul role="menu" class="dropdown-menu">

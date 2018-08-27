@@ -82,8 +82,10 @@
                                     <div class="clearfix"></div>
                                     <div class="text-center">
                                         <button class="btn btn-primary" type="submit">搜索</button>
+                                        @if(session()->get('admin')['gid'] != 3)
                                         <a href="{{ url('proone/create') }}" class="btn btn-default">创建项目</a>
                                         <a id="toexcel" href="javascript:void(0);" class="btn btn-default">导出Excel</a>
+                                        @endif
                                     </div>
                                 </form>
                             </div>
