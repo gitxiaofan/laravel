@@ -72,20 +72,20 @@
         <div class="col-sm-8">
             <div id="shareholder" class="form-control-list">
                 <ul class="list-unstyled">
-                    <li>
-                        <div class="col-xs-3">记录时间</div>
-                        <div class="col-xs-7">股东权益人</div>
+                    <li class="hidden-xs">
+                        <div class="col-sm-3">记录时间</div>
+                        <div class="col-sm-7">股东权益人</div>
                         @if($detail != 1)
-                        <div class="col-xs-2">操作</div>
+                        <div class="col-sm-2">操作</div>
                         @endif
                     </li>
                     @if(isset($project->shareholder) && $project->shareholder)
                         @foreach(json_decode($project->shareholder,true) as $key => $item)
                             <li>
-                                <div class="col-xs-3">{{ $item['time'] }}</div>
-                                <div class="col-xs-7">{{ $item['content'] }}</div>
+                                <div class="col-sm-3">{{ $item['time'] }}</div>
+                                <div class="{{ $detail == 1 ? 'col-sm-9' : 'col-sm-7' }}">{{ $item['content'] }}</div>
                                 @if($detail != 1)
-                                <div class="col-xs-2">
+                                <div class="col-sm-2">
                                     <div class="myclick fcl-del" data-id="{{ 'shareholder-input-'.$key }}"><i class="fa fa-times"></i> 删除</div>
                                 </div>
                                 @endif
@@ -114,20 +114,20 @@
         <div class="col-sm-8">
             <div id="operator" class="form-control-list">
                 <ul class="list-unstyled">
-                    <li>
-                        <div class="col-xs-3">记录时间</div>
-                        <div class="col-xs-7">作业方</div>
+                    <li class="hidden-xs">
+                        <div class="col-sm-3">记录时间</div>
+                        <div class="{{ $detail == 1 ? 'col-sm-9' : 'col-sm-7' }}">作业方</div>
                         @if($detail != 1)
-                        <div class="col-xs-2">操作</div>
+                        <div class="col-sm-2">操作</div>
                         @endif
                     </li>
                     @if(isset($project->operator) && $project->operator)
                         @foreach(json_decode($project->operator,true) as $key => $item)
                             <li>
-                                <div class="col-xs-3">{{ $item['time'] }}</div>
-                                <div class="col-xs-7">{{ $item['content'] }}</div>
+                                <div class="col-sm-3">{{ $item['time'] }}</div>
+                                <div class="{{ $detail == 1 ? 'col-sm-9' : 'col-sm-7' }}">{{ $item['content'] }}</div>
                                 @if($detail != 1)
-                                <div class="col-xs-2">
+                                <div class="col-sm-2">
                                     <div class="myclick fcl-del" data-id="{{ 'operator-input-'.$key }}"><i class="fa fa-times"></i> 删除</div>
                                 </div>
                                 @endif
@@ -150,20 +150,20 @@
         <div class="col-sm-8">
             <div id="p_power" class="form-control-list">
                 <ul class="list-unstyled">
-                    <li>
-                        <div class="col-xs-3">记录时间</div>
-                        <div class="col-xs-7">处理能力</div>
+                    <li class="hidden-xs">
+                        <div class="col-sm-3">记录时间</div>
+                        <div class="{{ $detail == 1 ? 'col-sm-9' : 'col-sm-7' }}">处理能力</div>
                         @if($detail != 1)
-                        <div class="col-xs-2">操作</div>
+                        <div class="col-sm-2">操作</div>
                         @endif
                     </li>
                     @if(isset($project->p_power) && $project->p_power)
                         @foreach(json_decode($project->p_power,true) as $key => $item)
                             <li>
-                                <div class="col-xs-3">{{ $item['time'] }}</div>
-                                <div class="col-xs-7">{{ $item['content'] }}</div>
+                                <div class="col-sm-3">{{ $item['time'] }}</div>
+                                <div class="{{ $detail == 1 ? 'col-sm-9' : 'col-sm-7' }}">{{ $item['content'] }}</div>
                                 @if($detail != 1)
-                                <div class="col-xs-2">
+                                <div class="col-sm-2">
                                     <div class="myclick fcl-del" data-id="{{ 'p_power-input-'.$key }}"><i class="fa fa-times"></i> 删除</div>
                                 </div>
                                 @endif
@@ -186,20 +186,20 @@
         <div class="col-sm-8">
             <div id="s_power" class="form-control-list">
                 <ul class="list-unstyled">
-                    <li>
-                        <div class="col-xs-3">记录时间</div>
-                        <div class="col-xs-7">储存能力</div>
+                    <li class="hidden-xs">
+                        <div class="col-sm-3">记录时间</div>
+                        <div class="{{ $detail == 1 ? 'col-sm-9' : 'col-sm-7' }}">储存能力</div>
                         @if($detail != 1)
-                        <div class="col-xs-2">操作</div>
+                        <div class="col-sm-2">操作</div>
                         @endif
                     </li>
                     @if(isset($project->s_power) && $project->s_power)
                         @foreach(json_decode($project->s_power,true) as $key => $item)
                             <li>
-                                <div class="col-xs-3">{{ $item['time'] }}</div>
-                                <div class="col-xs-7">{{ $item['content'] }}</div>
+                                <div class="col-sm-3">{{ $item['time'] }}</div>
+                                <div class="{{ $detail == 1 ? 'col-sm-9' : 'col-sm-7' }}">{{ $item['content'] }}</div>
                                 @if($detail != 1)
-                                <div class="col-xs-2">
+                                <div class="col-sm-2">
                                     <div class="myclick fcl-del" data-id="{{ 's_power-input-'.$key }}"><i class="fa fa-times"></i> 删除</div>
                                 </div>
                                 @endif
@@ -233,19 +233,19 @@
         <div class="col-sm-8">
             <div id="product_time" class="form-control-list">
                 <ul class="list-unstyled">
-                    <li>
-                        <div class="col-xs-3">记录时间</div>
-                        <div class="col-xs-7">最终投资决定和投产时间</div>
+                    <li class="hidden-xs">
+                        <div class="col-sm-3">记录时间</div>
+                        <div class="{{ $detail == 1 ? 'col-sm-9' : 'col-sm-7' }}">最终投资决定和投产时间</div>
                         @if($detail != 1)
-                        <div class="col-xs-2">操作</div>
+                        <div class="col-sm-2">操作</div>
                         @endif
                     </li>
                     @if(isset($project->product_time) && $project->product_time)
                         @foreach(json_decode($project->product_time,true) as $key => $item)
                             <li>
-                                <div class="col-xs-3">{{ $item['time'] }}</div>
-                                <div class="col-xs-7">{{ $item['content'] }}</div>
-                                <div class="col-xs-2">
+                                <div class="col-sm-3">{{ $item['time'] }}</div>
+                                <div class="{{ $detail == 1 ? 'col-sm-9' : 'col-sm-7' }}">{{ $item['content'] }}</div>
+                                <div class="col-sm-2">
                                     <div class="myclick fcl-del" data-id="{{ 'product_time-input-'.$key }}"><i class="fa fa-times"></i> 删除</div>
                                 </div>
                             </li>
@@ -267,7 +267,7 @@
         <div class="col-sm-8">
             <div class="event_record form-control-list">
                 <ul class="list-unstyled">
-                    <li>
+                    <li class="hidden-xs">
                         <div class="col-sm-3">记录时间</div>
                         <div class="{{ $detail == 1 ? 'col-sm-7' : 'col-sm-5' }}">大事件内容</div>
                         <div class="col-sm-2">记录人</div>
@@ -324,13 +324,13 @@
                     <label class="col-sm-3 control-label">记录时间：</label>
                     <div class="col-sm-8">
                         <div class="row">
-                            <div class="col-xs-6">
+                            <div class="col-sm-6">
                                 <div class="input-group date">
                                     <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                                     <input type="text" name="list-time-date" class="form-control">
                                 </div>
                             </div>
-                            <div class="col-xs-6">
+                            <div class="col-sm-6">
                                 <div class="input-group clockpicker" data-autoclose="true">
                             <span class="input-group-addon">
                                     <span class="fa fa-clock-o"></span>
