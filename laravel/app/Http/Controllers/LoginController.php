@@ -69,7 +69,7 @@ class LoginController extends Controller
             }
         }
         Session::forget('admin');
-        return redirect('index');
+        return redirect('login');
     }
 
     private function update_admin_status($request,$admin)

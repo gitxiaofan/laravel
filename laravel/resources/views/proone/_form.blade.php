@@ -268,21 +268,21 @@
             <div class="event_record form-control-list">
                 <ul class="list-unstyled">
                     <li>
-                        <div class="col-xs-3">记录时间</div>
-                        <div class="col-xs-5">大事件内容</div>
-                        <div class="col-xs-2">记录人</div>
+                        <div class="col-sm-3">记录时间</div>
+                        <div class="{{ $detail == 1 ? 'col-sm-7' : 'col-sm-5' }}">大事件内容</div>
+                        <div class="col-sm-2">记录人</div>
                         @if($detail != 1)
-                        <div class="col-xs-2">操作</div>
+                        <div class="col-sm-2">操作</div>
                         @endif
                     </li>
                     @if(count($project->ProoneRecord) != 0)
                         @foreach($project->ProoneRecord as $key => $item)
                             <li>
-                                <div class="col-xs-3">{{ date( 'Y-m-d H:i:s',$item->created_at) }}</div>
-                                <div class="col-xs-5">{{ $item->content }}</div>
-                                <div class="col-xs-2">{{ $item->Admin->user_name }}</div>
+                                <div class="col-sm-3">{{ date( 'Y-m-d H:i:s',$item->created_at) }}</div>
+                                <div class="{{ $detail == 1 ? 'col-sm-7' : 'col-sm-5' }}">{{ $item->content }}</div>
+                                <div class="col-sm-2">{{ $item->Admin->user_name }}</div>
                                 @if($detail != 1)
-                                <div class="col-xs-2">
+                                <div class="col-sm-2">
                                     <div class="myclick fcl-del" data-id="{{ $item->id }}"><i class="fa fa-times"></i> 删除</div>
                                 </div>
                                 @endif

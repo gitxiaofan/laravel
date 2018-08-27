@@ -20,7 +20,7 @@
     <link href="{{ asset('/assets/admin/css/font-awesome.min.css') }}" rel="stylesheet">
     <link href="{{ asset('/assets/admin/css/animate.css') }}" rel="stylesheet">
     <link href="{{ asset('/assets/admin/css/style.css') }}" rel="stylesheet">
-    @section('style')
+    @section('css')
 
     @show
 </head>
