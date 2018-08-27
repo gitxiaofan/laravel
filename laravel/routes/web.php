@@ -19,7 +19,7 @@ Route::group(['middleware' => ['web','adminvisitor']],function (){
     Route::get('show', ['as' => 'show', 'uses' => 'HomeController@show']);
     Route::get('role', ['as' => 'role', 'uses' => 'HomeController@role']);
     Route::get('page/detail/{id}', ['as' => 'page_detail', 'uses' => 'PageController@detail']);
-
+    Route::any('page/upload', ['as' => 'page_upload', 'uses' => 'PageController@upload']);
 });
 
 Route::group(['middleware' => ['web','adminauth','adminvisitor']], function (){
@@ -40,7 +40,7 @@ Route::group(['middleware' => ['web','adminauth','adminvisitor']], function (){
     Route::get('page/index', ['as' => 'page_index', 'uses' => 'PageController@index']);
     Route::any('page/create', ['as' => 'page_create', 'uses' => 'PageController@create']);
     Route::any('page/update/{id}', ['as' => 'page_update', 'uses' => 'PageController@update']);
-    Route::any('page/upload', ['as' => 'page_upload', 'uses' => 'PageController@upload']);
+
     Route::get('page/delete/{id}', ['as' => 'page_delete', 'uses' => 'PageController@delete']);
 });
 

@@ -4,6 +4,7 @@
 
 @section('css')
     <link rel="stylesheet" type="text/css" href="{{ asset('/assets/admin/css/plugins/simditor/simditor.css') }}" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 @endsection
 
 @section('content')
