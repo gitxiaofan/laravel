@@ -29,9 +29,9 @@ Route::group(['middleware' => ['web','adminauth','adminvisitor']], function (){
     Route::get('admin/check_name', ['as' => 'admin_check_name', 'uses' => 'AdminController@check_name']);
     Route::get('admin/delete/{id}', ['as' => 'admin_delete','uses' => 'AdminController@delete']);
     Route::any('account', ['as' => 'account','uses' => 'AdminController@account']);
-    Route::get('proone/index', ['as' => 'proone_index', 'uses' => 'ProoneController@index']);
-    Route::get('proone/toexcel', ['as' => 'proone_toexcel', 'uses' => 'ProoneController@toExcel']);
-    Route::any('proone/create', ['as' => 'proone_create', 'uses' => 'ProoneController@create']);
+    Route::get('proone/index/{type}', ['as' => 'proone_index', 'uses' => 'ProoneController@index']);
+    Route::get('proone/toexcel/{type}', ['as' => 'proone_toexcel', 'uses' => 'ProoneController@toExcel']);
+    Route::any('proone/create/{type}', ['as' => 'proone_create', 'uses' => 'ProoneController@create']);
     Route::any('proone/detail/{id}', ['as' => 'proone_detail', 'uses' => 'ProoneController@detail']);
     Route::any('proone/detailtoexcel/{id}', ['as' => 'proone_detailtoexcel', 'uses' => 'ProoneController@detailToExcel']);
     Route::any('proone/update/{id}', ['as' => 'proone_update', 'uses' => 'ProoneController@update']);

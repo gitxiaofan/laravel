@@ -7,7 +7,7 @@
     <div class="wrapper wrapper-content home-show">
         <div class="row">
             <div class="col-sm-4">
-                <a href="{{ url('proone/index') }}">
+                <a href="{{ url('proone/index/1') }}">
                     <div class="ibox home-box">
                         <div class="">
                             <h2>浮式生产装置</h2>
@@ -17,7 +17,7 @@
                 </a>
             </div>
             <div class="col-sm-4">
-                <a href="">
+                <a href="{{ url('proone/index/2') }}">
                     <div class="ibox home-box">
                         <div class="">
                             <h2>钻井/生活平台</h2>

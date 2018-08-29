@@ -11,7 +11,7 @@ class Proone extends Model
 
     protected $primaryKey = 'id';
 
-    protected $fillable = ['name', 'model', 'status', 'region', 'oil_name', 'oil_desc', 'depth', 'shareholder', 'location', 'operator', 'p_power', 's_power', 'bidding_status', 'bs_remark', 'product_time'];
+    protected $fillable = ['name', 'model', 'status', 'region', 'oil_name', 'oil_desc', 'depth', 'shareholder', 'location', 'operator', 'p_power', 's_power', 'bidding_status', 'bs_remark', 'product_time', 'created_admin', 'updated_admin', 'contractor', 'design', 'lease','desc','type'];
 
     public function freshTimestamp()
     {
@@ -51,6 +51,21 @@ class Proone extends Model
         return $arr;
     }
 
+    public function model_two_config($ind = NULL)
+    {
+        $arr = [
+            1 => 'Jackup',
+            2 => 'Semisub',
+            3 => 'Drillship',
+            4 => 'Others',
+        ];
+
+        if ($ind !== NULL){
+            return array_key_exists($ind,$arr) ? $arr[$ind] : 'Unknown';
+        }
+        return $arr;
+    }
+
     public function status_config($ind = NULL)
     {
         $arr = [
@@ -61,6 +76,22 @@ class Proone extends Model
             5 => '最终投资决定',
             6 => '建造中',
             7 => '已交付',
+        ];
+
+        if ($ind !== NULL){
+            return array_key_exists($ind,$arr) ? $arr[$ind] : 'Unknown';
+        }
+        return $arr;
+    }
+
+    public function status_two_config($ind = NULL)
+    {
+        $arr = [
+            1 => '计划中',
+            2 => '招标中',
+            3 => '设计、采购、建造',
+            4 => '建造中',
+            5 => '已交付',
         ];
 
         if ($ind !== NULL){
@@ -80,6 +111,20 @@ class Proone extends Model
             6 => '中东',
             7 => '非洲',
             8 => '其他',
+        ];
+
+        if ($ind !== NULL){
+            return array_key_exists($ind,$arr) ? $arr[$ind] : '未知';
+        }
+        return $arr;
+    }
+
+    public function region_two_config($ind = NULL)
+    {
+        $arr = [
+            1 => '全球水域',
+            2 => '恶劣水域',
+            3 => '一般水域',
         ];
 
         if ($ind !== NULL){

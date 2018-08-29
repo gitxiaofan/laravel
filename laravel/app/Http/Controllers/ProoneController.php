@@ -16,20 +16,15 @@ class ProoneController extends Controller
 
     }
 
-    public function index(Request $request)
+    public function index(Request $request,$type)
     {
         $proone = new Proone();
         $page_size = config('config.PAGE_SIZE') ? config('config.PAGE_SIZE') : 20;
-        $projects = $proone->orderby('id','DESC')->where(function($query) use($request){
+        $projects = $proone->orderby('id','DESC')->where('type','=',$type)->where(function($query) use($request){
             $this->condition($request,$query);
         })->paginate($page_size);
         $this->get_admin();
-        $pro_config = [
-            'model_config' => $proone->model_config(),
-            'region_config' => $proone->region_config(),
-            'status_config' => $proone->status_config(),
-            'bs_config' => $proone->bs_config(),
-        ];
+        $pro_config = $this->get_config($proone,$type);
         $operation = ($this->gid == 1 || $this->gid == 2) ? 'proone/update' : 'proone/detail';
         return view('proone.index',[
             'projects' => $projects,
@@ -37,6 +32,7 @@ class ProoneController extends Controller
             'operation' => $operation,
             'search' => $request->all(),
             'pro_config' => $pro_config,
+            'type' => $type,
         ]);
     }
 
@@ -57,9 +53,12 @@ class ProoneController extends Controller
         if($bidding_status = $request->input('bidding_status')){
             $query->where('bidding_status','=',$bidding_status);
         }
+        if($contractor = $request->input('contractor')){
+            $query->where('contractor','LIKE','%'.$contractor.'%');
+        }
     }
 
-    public function create(Request $request)
+    public function create(Request $request,$type)
     {
         $proone = new Proone();
         $this->get_admin();
@@ -112,6 +111,11 @@ class ProoneController extends Controller
                 'bs_remark' => $request->input('bs_remark') ? $request->input('bs_remark') : '',
                 'product_time' => isset($product_time) ? $product_time : '',
                 'created_admin' => $this->admin['id'],
+                'type' => $type,
+                'contractor' => $request->input('contractor') ? $request->input('contractor') : '',
+                'design' => $request->input('design') ? $request->input('design') : '',
+                'desc' => $request->input('desc') ? $request->input('desc') : '',
+                'lease' => $request->input('lease') ? $request->input('lease') : '',
             ];
             if($res = Proone::create($data)){
                 if($record = $request->input('event_record')){
@@ -132,6 +136,8 @@ class ProoneController extends Controller
             'project' => $proone,
             'gid' => $this->gid,
             'detail' => 0,
+            'type' => $type,
+            'pro_config' => $this->get_config($proone,$type),
         ]);
     }
 
@@ -199,6 +205,11 @@ class ProoneController extends Controller
                 'bs_remark' => $request->input('bs_remark') ? $request->input('bs_remark') : '',
                 'product_time' => isset($product_time) ? $product_time : '',
                 'updated_admin' => $this->admin['id'],
+                'type' => $proone->type,
+                'contractor' => $request->input('contractor') ? $request->input('contractor') : '',
+                'design' => $request->input('design') ? $request->input('design') : '',
+                'desc' => $request->input('desc') ? $request->input('desc') : '',
+                'lease' => $request->input('lease') ? $request->input('lease') : '',
             ];
 
             if($proone->update($data)){
@@ -219,6 +230,8 @@ class ProoneController extends Controller
             'project' => $proone,
             'gid' => $this->gid,
             'detail' => 0,
+            'type' => $proone->type,
+            'pro_config' => $this->get_config($proone,$proone->type),
         ]);
     }
 
@@ -263,9 +276,9 @@ class ProoneController extends Controller
         $this->gid = $this->admin['gid'] ? $this->admin['gid'] : 3;
     }
 
-    public function toExcel(Request $request)
+    public function toExcel(Request $request,$type)
     {
-        $projects = Proone::orderby('id','DESC')->where(function($query) use($request){
+        $projects = Proone::orderby('id','DESC')->where('type','=',$type)->where(function($query) use($request){
             $this->condition($request,$query);
         })->get();
         $filename = '生产平台_'.date('Ymd',time()).'.csv';
@@ -372,6 +385,26 @@ class ProoneController extends Controller
         ob_flush();
         flush();
         ob_end_clean();
+    }
+
+    private function get_config($proone,$type)
+    {
+        if($type == 1){
+            $model_config = $proone->model_config();
+            $status_config = $proone->status_config();
+            $region_config = $proone->region_config();
+        }elseif($type == 2){
+            $model_config = $proone->model_two_config();
+            $status_config = $proone->status_two_config();
+            $region_config = $proone->region_two_config();
+        }
+        $pro_config = [
+            'model_config' => $model_config,
+            'region_config' => $region_config,
+            'status_config' => $status_config,
+            'bs_config' => $proone->bs_config(),
+        ];
+        return $pro_config;
     }
 
 

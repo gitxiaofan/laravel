@@ -14,7 +14,7 @@
                     <div class="ibox-title">
                         <h5>项目详情和招投标状态</h5>
                         <div class="ibox-tools">
-                            <a href="{{ url('proone/index') }}">
+                            <a href="{{ url('proone/index/'. $type) }}">
                                 <i class="fa fa-reply"></i> 返回上一页
                             </a>
                         </div>

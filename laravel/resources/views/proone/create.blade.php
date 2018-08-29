@@ -16,7 +16,7 @@
                     <div class="ibox-title">
                         <h5>创建项目</h5>
                         <div class="ibox-tools">
-                            <a href="{{ url('proone/index') }}">
+                            <a href="{{ url('proone/index/'. $type) }}">
                                 <i class="fa fa-reply"></i> 返回上一页
                             </a>
                         </div>

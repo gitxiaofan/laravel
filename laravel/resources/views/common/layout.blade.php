@@ -50,10 +50,10 @@
                         </li>
                         @if(session()->get('admin')['id'])
                             <li>
-                                <a href="{{ url('proone/index') }}">生产平台</a>
+                                <a href="{{ url('proone/index/1') }}">生产平台</a>
                             </li>
                             <li>
-                                <a href="">钻井/生活平台</a>
+                                <a href="{{ url('proone/index/2') }}">钻井/生活平台</a>
                             </li>
                             <li>
                                 <a href="">重吊铺管船</a>

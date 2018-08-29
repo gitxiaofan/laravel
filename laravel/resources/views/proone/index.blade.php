@@ -27,9 +27,19 @@
                                             </div>
                                         </div>
                                     </div>
+                                    @if(in_array($type,array(1,2)))
                                     <div class="col-sm-4">
                                         <div class="form-group">
-                                            <label class="col-sm-3 control-label">开发方式：</label>
+                                            <label class="col-sm-3 control-label">
+                                                @switch($type)
+                                                    @case(1)
+                                                    开发方式：
+                                                    @break
+                                                    @case(2)
+                                                    平台型式：
+                                                    @break
+                                                @endswitch
+                                            </label>
                                             <div class="col-sm-8">
                                                 <select class="form-control m-b" name="model">
                                                     <option value="">下拉选择</option>
@@ -40,6 +50,8 @@
                                             </div>
                                         </div>
                                     </div>
+                                    @endif
+                                    @if(in_array($type,array(1)))
                                     <div class="col-sm-4">
                                         <div class="form-group">
                                             <label class="col-sm-3 control-label">地区：</label>
@@ -53,6 +65,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                    @endif
                                     <div class="col-sm-4">
                                         <div class="form-group">
                                             <label class="col-sm-3 control-label">项目状态：</label>
@@ -66,6 +79,16 @@
                                             </div>
                                         </div>
                                     </div>
+                                    @if(in_array($type,array(2)))
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">承包商：</label>
+                                            <div class="col-sm-8">
+                                                <input id="contractor" name="contractor" value="{{ isset($search['contractor']) && $search['contractor'] ? $search['contractor'] : '' }}" class="form-control" type="text">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @endif
                                     <div class="col-sm-4">
                                         <div class="form-group">
                                             <label class="col-sm-3 control-label">招投标状态：</label>
@@ -83,7 +106,7 @@
                                     <div class="text-center">
                                         <button class="btn btn-primary" type="submit">搜索</button>
                                         @if(session()->get('admin')['gid'] != 3)
-                                        <a href="{{ url('proone/create') }}" class="btn btn-default">创建项目</a>
+                                        <a href="{{ url('proone/create/'.$type) }}" class="btn btn-default">创建项目</a>
                                         <a id="toexcel" href="javascript:void(0);" class="btn btn-default">导出Excel</a>
                                         @endif
                                     </div>
@@ -95,8 +118,24 @@
                             <tr>
                                 <th>ID</th>
                                 <th>项目名称</th>
-                                <th>开发方式</th>
+                                @if(in_array($type,array(1,2)))
+                                <th>
+                                    @switch($type)
+                                        @case(1)
+                                        开发方式
+                                        @break
+                                        @case(2)
+                                        平台型式
+                                        @break
+                                    @endswitch
+                                </th>
+                                @endif
+                                @if(in_array($type,array(1)))
                                 <th>地区</th>
+                                @endif
+                                @if(in_array($type,array(2)))
+                                <th>承包商</th>
+                                @endif
                                 <th>项目状态</th>
                                 <th>招投标状态</th>
                                 <th>重大事件记录</th>
@@ -108,8 +147,15 @@
                                 <tr data-id="{{ $project->id }}" data-src="{{ url($operation,['id'=>$project->id]) }}">
                                     <td>{{ $project->id }}</td>
                                     <td>{{ $project->name }}</td>
-                                    <td>{{ $project->model_config($project->model) }}</td>
+                                    @if(in_array($type,array(1,2)))
+                                    <td>{{ $pro_config['model_config'][$project->model] }}</td>
+                                    @endif
+                                    @if(in_array($type,array(1)))
                                     <td>{{ $project->region_config($project->region) }}</td>
+                                    @endif
+                                    @if(in_array($type,array(2)))
+                                    <td>{{ $project->contractor }}</td>
+                                    @endif
                                     <td>{{ $project->status_config($project->status) }}</td>
                                     <td>{{ $project->bs_config($project->bidding_status) }}</td>
                                     <td>{{ count($project->ProoneRecord) != 0 ? mb_substr($project->ProoneRecord[0]->content,0,32,'utf-8') : '' }}</td>
@@ -143,7 +189,7 @@
             });
 
             $('#toexcel').click(function () {
-                var toexcel = '{{ url('proone/toexcel') }}';
+                var toexcel = '{{ url('proone/toexcel'. $type) }}';
                 $('#search-form').attr('action', toexcel);
                 $('#search-form').submit();
                 $('#search-form').attr('action', '');
