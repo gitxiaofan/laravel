@@ -8,9 +8,9 @@
             <div class="col-sm-12">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        <h5>生产平台</h5>
+                        <h5>{{ $pro_config['type_config'][$type] }}</h5>
                         <div class="ibox-tools">
-                            <a href="{{ url('proone/index') }}">
+                            <a href="{{ url('proone/index/'. $type) }}">
                                 <i class="fa fa-refresh"></i> 刷新列表
                             </a>
                         </div>
@@ -189,7 +189,7 @@
             });
 
             $('#toexcel').click(function () {
-                var toexcel = '{{ url('proone/toexcel'. $type) }}';
+                var toexcel = '{{ url('proone/toexcel/'. $type) }}';
                 $('#search-form').attr('action', toexcel);
                 $('#search-form').submit();
                 $('#search-form').attr('action', '');

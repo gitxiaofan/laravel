@@ -278,24 +278,47 @@ class ProoneController extends Controller
 
     public function toExcel(Request $request,$type)
     {
-        $projects = Proone::orderby('id','DESC')->where('type','=',$type)->where(function($query) use($request){
+        $proone = new Proone();
+        $projects = $proone->orderby('id','DESC')->where('type','=',$type)->where(function($query) use($request){
             $this->condition($request,$query);
         })->get();
-        $filename = '生产平台_'.date('Ymd',time()).'.csv';
-        $title = ['ID','项目名称','开发方式','地区','项目状态','招投标状态','重大事件记录','记录人'];
-        $data = array();
-        foreach ($projects as $project){
-            $data[] = [
-                $project->id,
-                $project->name,
-                $project->model_config($project->model),
-                $project->region_config($project->region),
-                $project->status_config($project->status),
-                $project->bs_config($project->bidding_status),
-                count($project->ProoneRecord) != 0 ? $project->ProoneRecord[0]->content : '',
-                count($project->ProoneRecord) != 0 ? $project->ProoneRecord[0]->Admin->user_name : '',
-            ];
+        switch ($type){
+            case 1:
+                $filename = '生产平台_'. date('Ymd',time()).'.csv';
+                $title = ['ID','项目名称','开发方式','地区','项目状态','招投标状态','重大事件记录','记录人'];
+                $data = array();
+                foreach ($projects as $project){
+                    $data[] = [
+                        $project->id,
+                        $project->name,
+                        $project->model_config($project->model),
+                        $project->region_config($project->region),
+                        $project->status_config($project->status),
+                        $project->bs_config($project->bidding_status),
+                        count($project->ProoneRecord) != 0 ? $project->ProoneRecord[0]->content : '',
+                        count($project->ProoneRecord) != 0 ? $project->ProoneRecord[0]->Admin->user_name : '',
+                    ];
+                }
+                break;
+            case 2:
+                $filename = '钻井生活平台_'. date('Ymd',time()).'.csv';
+                $title = ['ID','项目名称','平台型式','承包商','项目状态','招投标状态','重大事件记录','记录人'];
+                $data = array();
+                foreach ($projects as $project){
+                    $data[] = [
+                        $project->id,
+                        $project->name,
+                        $project->model_two_config($project->model),
+                        $project->contractor,
+                        $project->status_config($project->status),
+                        $project->bs_config($project->bidding_status),
+                        count($project->ProoneRecord) != 0 ? $project->ProoneRecord[0]->content : '',
+                        count($project->ProoneRecord) != 0 ? $project->ProoneRecord[0]->Admin->user_name : '',
+                    ];
+                }
+                break;
         }
+
         $this->exportToExcel($filename,$title,$data);
     }
 
@@ -403,6 +426,7 @@ class ProoneController extends Controller
             'region_config' => $region_config,
             'status_config' => $status_config,
             'bs_config' => $proone->bs_config(),
+            'type_config' => $proone->type_config(),
         ];
         return $pro_config;
     }

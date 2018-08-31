@@ -149,6 +149,23 @@ class Proone extends Model
         return $arr;
     }
 
+    public function type_config($ind = NUll)
+    {
+        $arr = [
+            1 => '浮式生产装置',
+            2 => '钻井/生活平台',
+            3 => '起重/铺管船',
+            4 => '浮式储存和再气化船',
+            5 => '液化天然气模块',
+            6 => '水下设施和工程',
+        ];
+
+        if ($ind !== NULL){
+            return array_key_exists($ind,$arr) ? $arr[$ind] : '未知';
+        }
+        return $arr;
+    }
+
     public function ProoneRecord()
     {
         return $this->hasMany('App\ProoneRecord','pro_id','id')->orderBy('id','DESC');
