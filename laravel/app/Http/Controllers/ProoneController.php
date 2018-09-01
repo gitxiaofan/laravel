@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Proone;
+use App\ProoneMore;
 use App\ProoneRecord;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -134,6 +135,19 @@ class ProoneController extends Controller
                     ];
                     ProoneRecord::create($data);
                 }
+                if($more = $request->input('more')){
+                    $data = array();
+                    foreach ($more as $v){
+                        $data[] = [
+                            'pro_id' => $res->id,
+                            'name' => $v['name'] ? $v['name'] : '',
+                            'value' => $v['value'] ? $v['value'] : '',
+                            'sort' => $v['sort'] ? intval($v['sort']) : 0,
+                        ];
+                    }
+                    $proone_more = new ProoneMore();
+                    $proone_more->insert($data);
+                }
                 return redirect()->route('proone_update',[$res->id]);
             }else{
                 return redirect()->back();
@@ -233,6 +247,17 @@ class ProoneController extends Controller
                         'content' => $record,
                     ];
                     ProoneRecord::create($data);
+                }
+                if($more = $request->input('more')){
+                    $data = array();
+                    foreach ($more as $v){
+                        $data[] = [
+                            'id' => $v['id'],
+                            'value' => $v['value'] ? $v['value'] : '',
+                        ];
+                    }
+                    $proone_more = new ProoneMore();
+                    $proone_more->updateBatch($data);
                 }
                 return redirect()->back();
             }else{

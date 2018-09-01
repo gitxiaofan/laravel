@@ -332,6 +332,30 @@
             </div>
         </div>
     @endif
+    @if(in_array($type,array(7)))
+        @if(count($project->ProoneMore))
+            @foreach($project->ProoneMore as $k => $more)
+            <div class="form-group">
+                <label class="col-sm-3 control-label">{{ $more['name'] }}：</label>
+                <div class="col-sm-8">
+                    <textarea name="more[{{ $k }}][value]" class="form-control">{{ $more['value'] }}</textarea>
+                    <input type="hidden" name="more[{{ $k }}][id]" value="{{ $more['id'] }}">
+                </div>
+            </div>
+            @endforeach
+        @else
+        @for($i=1;$i<16;$i++)
+        <div class="form-group">
+            <label class="col-sm-3 control-label">参数{{ $i }}：</label>
+            <div class="col-sm-8">
+                <textarea name="more[{{ $i }}][value]" class="form-control"></textarea>
+                <input type="hidden" name="more[{{ $i }}][name]" value="参数{{ $i }}">
+                <input type="hidden" name="more[{{ $i }}][sort]" value="{{ $i }}">
+            </div>
+        </div>
+        @endfor
+        @endif
+    @endif
     <div class="form-group">
         <label class="col-sm-3 control-label">招投标状态：</label>
         <div class="col-sm-8">

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class ProoneRecord extends Model
 {
 
-    protected $table = 'project_one_record';
+    protected $table = 'project_record';
 
     protected $primaryKey = 'id';
 

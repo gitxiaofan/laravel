@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Proone extends Model
 {
 
-    protected $table = 'project_one';
+    protected $table = 'project';
 
     protected $primaryKey = 'id';
 
@@ -225,6 +225,11 @@ class Proone extends Model
     public function ProoneRecord()
     {
         return $this->hasMany('App\ProoneRecord','pro_id','id')->orderBy('id','DESC');
+    }
+
+    public function ProoneMore()
+    {
+        return $this->hasMany('App\ProoneMore','pro_id','id')->orderBy('sort','ASC');
     }
 
 }
