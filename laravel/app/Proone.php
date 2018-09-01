@@ -11,7 +11,33 @@ class Proone extends Model
 
     protected $primaryKey = 'id';
 
-    protected $fillable = ['name', 'model', 'status', 'region', 'oil_name', 'oil_desc', 'depth', 'shareholder', 'location', 'operator', 'p_power', 's_power', 'bidding_status', 'bs_remark', 'product_time', 'created_admin', 'updated_admin', 'contractor', 'design', 'lease','desc','type'];
+    protected $fillable = [
+        'name',
+        'model',
+        'status',
+        'region',
+        'oil_name',
+        'oil_desc',
+        'depth',
+        'shareholder',
+        'location',
+        'operator',
+        'p_power',
+        's_power',
+        'bidding_status',
+        'bs_remark',
+        'product_time',
+        'created_admin',
+        'updated_admin',
+        'contractor',
+        'design',
+        'lease',
+        'desc',
+        'type',
+        'port',
+        'background',
+        'working_range',
+    ];
 
     public function freshTimestamp()
     {
@@ -62,6 +88,35 @@ class Proone extends Model
 
         if ($ind !== NULL){
             return array_key_exists($ind,$arr) ? $arr[$ind] : 'Unknown';
+        }
+        return $arr;
+    }
+
+    public function model_three_config($ind = NULL)
+    {
+        $arr = [
+            1 => 'S Lay',
+            2 => 'J lay',
+            3 => 'S Lay + J Lay',
+            4 => 'SSCV',
+            5 => 'Others',
+        ];
+
+        if ($ind !== NULL){
+            return array_key_exists($ind,$arr) ? $arr[$ind] : 'Unknown';
+        }
+        return $arr;
+    }
+
+    public function model_four_config($ind = NULL)
+    {
+        $arr = [
+            1 => '新造',
+            2 => '租赁',
+        ];
+
+        if ($ind !== NULL){
+            return array_key_exists($ind,$arr) ? $arr[$ind] : '未知';
         }
         return $arr;
     }
@@ -153,11 +208,12 @@ class Proone extends Model
     {
         $arr = [
             1 => '浮式生产装置',
-            2 => '钻井/生活平台',
-            3 => '起重/铺管船',
+            2 => '钻井生活平台',
+            3 => '起重铺管船',
             4 => '浮式储存和再气化船',
             5 => '液化天然气模块',
             6 => '水下设施和工程',
+            7 => '更多项目',
         ];
 
         if ($ind !== NULL){

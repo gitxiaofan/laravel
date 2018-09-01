@@ -27,7 +27,7 @@
                 </a>
             </div>
             <div class="col-sm-4">
-                <a href="">
+                <a href="{{ url('proone/index/3') }}">
                     <div class="ibox home-box">
                         <div class="">
                             <h2>起重/铺管船</h2>
@@ -41,7 +41,7 @@
             <div class="col-sm-4">
                 <a href="">
                     <div class="ibox home-box">
-                        <div class="">
+                        <div class="{{ url('proone/index/4') }}">
                             <h2>浮式储存和再气化船</h2>
                             <h3>Floating Storage Regasification Unit</h3>
                         </div>
@@ -49,7 +49,7 @@
                 </a>
             </div>
             <div class="col-sm-4">
-                <a href="">
+                <a href="{{ url('proone/index/5') }}">
                     <div class="ibox home-box">
                         <div class="">
                             <h2>液化天然气模块</h2>
@@ -59,7 +59,7 @@
                 </a>
             </div>
             <div class="col-sm-4">
-                <a href="">
+                <a href="{{ url('proone/index/6') }}">
                     <div class="ibox home-box">
                         <div class="">
                             <h2>水下设施和工程</h2>
@@ -71,7 +71,7 @@
         </div>
         <div class="row">
             <div class="col-sm-4">
-                <a href="">
+                <a href="{{ url('proone/index/7') }}">
                     <div class="ibox home-box">
                         <div class="">
                             <h2>更多项目……</h2>

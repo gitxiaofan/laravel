@@ -56,16 +56,16 @@
                                 <a href="{{ url('proone/index/2') }}">钻井/生活平台</a>
                             </li>
                             <li>
-                                <a href="">重吊铺管船</a>
+                                <a href="{{ url('proone/index/3') }}">重吊铺管船</a>
                             </li>
                             <li>
-                                <a href="">FSRU</a>
+                                <a href="{{ url('proone/index/4') }}">FSRU</a>
                             </li>
                             <li>
-                                <a href="">LNG模块</a>
+                                <a href="{{ url('proone/index/5') }}">LNG模块</a>
                             </li>
                             <li>
-                                <a href="">水下设施和工程</a>
+                                <a href="{{ url('proone/index/6') }}">水下设施和工程</a>
                             </li>
                         @endif
                         <li>

@@ -27,15 +27,17 @@
                                             </div>
                                         </div>
                                     </div>
-                                    @if(in_array($type,array(1,2)))
+                                    @if(in_array($type,array(1,2,3,4)))
                                     <div class="col-sm-4">
                                         <div class="form-group">
                                             <label class="col-sm-3 control-label">
                                                 @switch($type)
                                                     @case(1)
+                                                    @case(4)
                                                     开发方式：
                                                     @break
                                                     @case(2)
+                                                    @case(3)
                                                     平台型式：
                                                     @break
                                                 @endswitch
@@ -51,7 +53,7 @@
                                         </div>
                                     </div>
                                     @endif
-                                    @if(in_array($type,array(1)))
+                                    @if(in_array($type,array(1,4,5,6)))
                                     <div class="col-sm-4">
                                         <div class="form-group">
                                             <label class="col-sm-3 control-label">地区：</label>
@@ -79,7 +81,17 @@
                                             </div>
                                         </div>
                                     </div>
-                                    @if(in_array($type,array(2)))
+                                    @if(in_array($type,array(5,6)))
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label">作业方：</label>
+                                                <div class="col-sm-8">
+                                                    <input id="operator" name="operator" value="{{ isset($search['operator']) && $search['operator'] ? $search['operator'] : '' }}" class="form-control" type="text">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endif
+                                    @if(in_array($type,array(2,3)))
                                     <div class="col-sm-4">
                                         <div class="form-group">
                                             <label class="col-sm-3 control-label">承包商：</label>
@@ -118,22 +130,27 @@
                             <tr>
                                 <th>ID</th>
                                 <th>项目名称</th>
-                                @if(in_array($type,array(1,2)))
+                                @if(in_array($type,array(1,2,3,4)))
                                 <th>
                                     @switch($type)
                                         @case(1)
+                                        @case(4)
                                         开发方式
                                         @break
                                         @case(2)
+                                        @case(3)
                                         平台型式
                                         @break
                                     @endswitch
                                 </th>
                                 @endif
-                                @if(in_array($type,array(1)))
+                                @if(in_array($type,array(5,6)))
+                                    <th>作业方</th>
+                                @endif
+                                @if(in_array($type,array(1,4,5,6)))
                                 <th>地区</th>
                                 @endif
-                                @if(in_array($type,array(2)))
+                                @if(in_array($type,array(2,3)))
                                 <th>承包商</th>
                                 @endif
                                 <th>项目状态</th>
@@ -147,16 +164,19 @@
                                 <tr data-id="{{ $project->id }}" data-src="{{ url($operation,['id'=>$project->id]) }}">
                                     <td>{{ $project->id }}</td>
                                     <td>{{ $project->name }}</td>
-                                    @if(in_array($type,array(1,2)))
+                                    @if(in_array($type,array(1,2,3,4)))
                                     <td>{{ $pro_config['model_config'][$project->model] }}</td>
                                     @endif
-                                    @if(in_array($type,array(1)))
+                                    @if(in_array($type,array(5,6)))
+                                    <td>{{ count($operator = json_decode($project->operator,true)) != 0 ? $operator[0]['content'] : '' }}</td>
+                                    @endif
+                                    @if(in_array($type,array(1,4,5,6)))
                                     <td>{{ $project->region_config($project->region) }}</td>
                                     @endif
-                                    @if(in_array($type,array(2)))
+                                    @if(in_array($type,array(2,3)))
                                     <td>{{ $project->contractor }}</td>
                                     @endif
-                                    <td>{{ $project->status_config($project->status) }}</td>
+                                    <td>{{ $pro_config['status_config'][$project->status] }}</td>
                                     <td>{{ $project->bs_config($project->bidding_status) }}</td>
                                     <td>{{ count($project->ProoneRecord) != 0 ? mb_substr($project->ProoneRecord[0]->content,0,32,'utf-8') : '' }}</td>
                                     <td>{{ count($project->ProoneRecord) != 0 ? $project->ProoneRecord[0]->Admin->user_name : '' }}</td>

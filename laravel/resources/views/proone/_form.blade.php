@@ -19,14 +19,24 @@
             @if($detail != 1)<span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 项目名称是必填的</span>@endif
         </div>
     </div>
-    @if(in_array($type,array(1,2)))
+    @if(in_array($type,array(4,5)))
+    <div class="form-group">
+        <label class="col-sm-3 control-label">港口地：</label>
+        <div class="col-sm-8">
+            <input id="port" name="port" value="{{ old('port') ? old('port') : $project->port }}" class="form-control" type="text" {{ $detail == 1 ? 'disabled':'' }} >
+        </div>
+    </div>
+    @endif
+    @if(in_array($type,array(1,2,3,4)))
     <div class="form-group">
         <label class="col-sm-3 control-label">
             @switch($type)
                 @case(1)
+                @case(4)
                 开发方式：
                 @break
                 @case(2)
+                @case(3)
                 平台型式：
                 @break
             @endswitch
@@ -50,7 +60,7 @@
             </select>
         </div>
     </div>
-    @if(in_array($type,array(2)))
+    @if(in_array($type,array(2,3)))
     <div class="form-group">
         <label class="col-sm-3 control-label">钻井承包商：</label>
         <div class="col-sm-8">
@@ -62,10 +72,17 @@
         <label class="col-sm-3 control-label">
             @switch($type)
                 @case(1)
+                @case(4)
+                @case(5)
+                @case(6)
                 地区：
                 @break
                 @case(2)
+                @case(3)
                 目标市场地区：
+                @break
+                @default
+                地区
                 @break
             @endswitch
         </label>
@@ -77,7 +94,7 @@
             </select>
         </div>
     </div>
-    @if(in_array($type,array(1)))
+    @if(in_array($type,array(1,6)))
     <div class="form-group">
         <label class="col-sm-3 control-label">油气田名称：</label>
         <div class="col-sm-8">
@@ -85,7 +102,7 @@
         </div>
     </div>
     @endif
-    @if(in_array($type,array(1)))
+    @if(in_array($type,array(1,6)))
     <div class="form-group">
         <label class="col-sm-3 control-label">油气田描述：</label>
         <div class="col-sm-8">
@@ -93,7 +110,7 @@
         </div>
     </div>
     @endif
-    @if(in_array($type,array(2)))
+    @if(in_array($type,array(2,3)))
     <div class="form-group">
         <label class="col-sm-3 control-label">平台设计：</label>
         <div class="col-sm-8">
@@ -101,14 +118,20 @@
         </div>
     </div>
     @endif
+    @if(in_array($type,array(1,2,3,6)))
     <div class="form-group">
         <label class="col-sm-3 control-label">
             @switch($type)
                 @case(1)
+                @case(6)
                 水深：
                 @break
                 @case(2)
+                @case(3)
                 工作水深：
+                @break
+                @default
+                水深
                 @break
             @endswitch
         </label>
@@ -116,7 +139,8 @@
             <input id="depth" name="depth" value="{{ old('depth') ? old('depth') : $project->depth }}" class="form-control" type="text" {{ $detail == 1 ? 'disabled':'' }}>
         </div>
     </div>
-    @if(in_array($type,array(2)))
+    @endif
+    @if(in_array($type,array(2,3,5)))
         <div class="form-group">
             <label class="col-sm-3 control-label">项目描述：</label>
             <div class="col-sm-8">
@@ -124,7 +148,7 @@
             </div>
         </div>
     @endif
-    @if(in_array($type,array(2)))
+    @if(in_array($type,array(2,3)))
         <div class="form-group">
             <label class="col-sm-3 control-label">租约状态：</label>
             <div class="col-sm-8">
@@ -132,7 +156,15 @@
             </div>
         </div>
     @endif
-    @if(in_array($type,array(1)))
+    @if(in_array($type,array(4)))
+        <div class="form-group">
+            <label class="col-sm-3 control-label">项目背景：</label>
+            <div class="col-sm-8">
+                <textarea id="background" name="background" class="form-control" {{ $detail == 1 ? 'disabled':'' }}>{{ old('background') ? old('background') : $project->background}}</textarea>
+            </div>
+        </div>
+    @endif
+    @if(in_array($type,array(1,4,5,6)))
     <div class="form-group">
         <label class="col-sm-3 control-label">股东权益人：</label>
         <div class="col-sm-8">
@@ -170,13 +202,15 @@
         </div>
     </div>
     @endif
-    @if(in_array($type,array(1)))
+    @if(in_array($type,array(1,6)))
     <div class="form-group">
         <label class="col-sm-3 control-label">油气田位置：</label>
         <div class="col-sm-8">
             <textarea id="location" name="location" class="form-control" {{ $detail == 1 ? 'disabled':'' }}>{{ old('location') ? old('location') : $project->location}}</textarea>
         </div>
     </div>
+    @endif
+    @if(in_array($type,array(1,5,6)))
     <div class="form-group">
         <label class="col-sm-3 control-label">作业方：</label>
         <div class="col-sm-8">
@@ -214,7 +248,7 @@
         </div>
     </div>
     @endif
-    @if(in_array($type,array(1)))
+    @if(in_array($type,array(1,4,5)))
     <div class="form-group">
         <label class="col-sm-3 control-label">处理能力：</label>
         <div class="col-sm-8">
@@ -252,7 +286,7 @@
         </div>
     </div>
     @endif
-    @if(in_array($type,array(1)))
+    @if(in_array($type,array(1,4)))
     <div class="form-group">
         <label class="col-sm-3 control-label">储存能力：</label>
         <div class="col-sm-8">
@@ -290,6 +324,14 @@
         </div>
     </div>
     @endif
+    @if(in_array($type,array(6)))
+        <div class="form-group">
+            <label class="col-sm-3 control-label">工作范围：</label>
+            <div class="col-sm-8">
+                <textarea id="working_range" name="working_range" class="form-control" {{ $detail == 1 ? 'disabled':'' }}>{{ old('working_range') ? old('working_range') : $project->working_range}}</textarea>
+            </div>
+        </div>
+    @endif
     <div class="form-group">
         <label class="col-sm-3 control-label">招投标状态：</label>
         <div class="col-sm-8">
@@ -301,7 +343,7 @@
             <textarea name="bs_remark" class="form-control" placeholder="招投标状态备注信息" {{ $detail == 1 ? 'disabled':'' }}>{{ old('bs_remark') ? old('bs_remark') : $project->bs_remark }}</textarea>
         </div>
     </div>
-    @if(in_array($type,array(1)))
+    @if(in_array($type,array(1,4,5,6)))
     <div class="form-group">
         <label class="col-sm-3 control-label">最终投资决定：</label>
         <div class="col-sm-8">
