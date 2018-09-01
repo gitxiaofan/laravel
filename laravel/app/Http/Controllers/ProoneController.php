@@ -278,6 +278,10 @@ class ProoneController extends Controller
         $project = Proone::find($id);
         $type = $project->type;
         $project->delete();
+        if ($id){
+            ProoneRecord::where('pro_id','=',$id)->delete();
+            ProoneMore::where('pro_id','=',$id)->delete();
+        }
         return redirect('proone/index/'. $type);
     }
 
