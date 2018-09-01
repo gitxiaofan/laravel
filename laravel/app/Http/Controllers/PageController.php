@@ -122,6 +122,9 @@ class PageController extends Controller
     public function delete($id)
     {
         Page::find($id)->delete();
+        if($id){
+            PageContent::where('page_id','=',$id)->delete();
+        }
         return redirect('page/index');
     }
 
