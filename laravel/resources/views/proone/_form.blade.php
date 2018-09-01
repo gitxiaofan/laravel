@@ -338,7 +338,7 @@
             <div class="form-group">
                 <label class="col-sm-3 control-label">{{ $more['name'] }}：</label>
                 <div class="col-sm-8">
-                    <textarea name="more[{{ $k }}][value]" class="form-control">{{ $more['value'] }}</textarea>
+                    <textarea name="more[{{ $k }}][value]" class="form-control" {{ $detail == 1 ? 'disabled':'' }}>{{ $more['value'] }}</textarea>
                     <input type="hidden" name="more[{{ $k }}][id]" value="{{ $more['id'] }}">
                 </div>
             </div>
