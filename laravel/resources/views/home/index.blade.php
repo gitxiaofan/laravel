@@ -39,9 +39,9 @@
         </div>
         <div class="row">
             <div class="col-sm-4">
-                <a href="">
+                <a href="{{ url('proone/index/4') }}">
                     <div class="ibox home-box">
-                        <div class="{{ url('proone/index/4') }}">
+                        <div class="">
                             <h2>浮式储存和再气化船</h2>
                             <h3>Floating Storage Regasification Unit</h3>
                         </div>

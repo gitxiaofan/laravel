@@ -7922,7 +7922,9 @@ body.skin-3 {
 
 .main-form .form-control[disabled] { background-color: #fff;}
 
+@media (min-width: 768px){
 .home-show { background: url("../img/home_bg.jpg") no-repeat center center fixed; background-size: cover;}
+}
 .home-box { background-color: rgba(54, 141, 237, 0.6); color: #fff; padding: 50px 10px; text-align: center; border-radius: 8px; margin: 0 20px 50px;}
 .home-box h2 { font-weight: 700;}
 .home-show .wrapper-content { padding-top: 50px;}
